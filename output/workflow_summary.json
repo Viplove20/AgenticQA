@@ -1,0 +1,35 @@
+{
+  "timestamp": "20260308_074229",
+  "workflow_status": "completed_successfully",
+  "steps": {
+    "planner": {
+      "status": "completed",
+      "output_file": "01_planner_scenarios.md"
+    },
+    "test_agent": {
+      "status": "completed",
+      "output_file": "02_test_cases.json"
+    },
+    "executor": {
+      "status": "completed",
+      "output_file": "03_playwright_scripts.ts"
+    },
+    "reporter": {
+      "status": "completed",
+      "output_file": "04_execution_report.json"
+    },
+    "jira": {
+      "status": "completed",
+      "output_file": "05_jira_report.json"
+    }
+  },
+  "output_directory": "C:\\Users\\viplo\\PycharmProjects\\Agentic-QA-System\\output",
+  "files_generated": [
+    "01_planner_scenarios.md",
+    "02_test_cases.json",
+    "03_playwright_scripts.ts",
+    "04_execution_report.json",
+    "05_jira_report.json",
+    "workflow_summary.json"
+  ]
+}

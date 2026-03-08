@@ -1,0 +1,387 @@
+{
+  "agent": "test_agent",
+  "status": "TEST_CASES_GENERATED",
+  "data": {
+    "test_cases": [
+      {
+        "test_id": "TC_001",
+        "module": "Login",
+        "scenario": "Verify user can login with valid credentials",
+        "priority": "High",
+        "preconditions": [
+          "User is on login page",
+          "User account exists"
+        ],
+        "steps": [
+          "Navigate to login page",
+          "Enter username from environment variable LOGIN_USERNAME",
+          "Enter password from environment variable LOGIN_PASSWORD",
+          "Click login button"
+        ],
+        "expected_result": "User should be redirected to the dashboard",
+        "test_data": {
+          "username_env": "LOGIN_USERNAME",
+          "password_env": "LOGIN_PASSWORD"
+        }
+      },
+      {
+        "test_id": "TC_002",
+        "module": "Login",
+        "scenario": "Verify error message is displayed for invalid password",
+        "priority": "High",
+        "preconditions": [
+          "User is on login page",
+          "User account exists"
+        ],
+        "steps": [
+          "Navigate to login page",
+          "Enter username from environment variable LOGIN_USERNAME",
+          "Enter an incorrect password",
+          "Click login button"
+        ],
+        "expected_result": "Error message 'Invalid credentials' is displayed",
+        "test_data": {
+          "username_env": "LOGIN_USERNAME"
+        }
+      },
+      {
+        "test_id": "TC_003",
+        "module": "Login",
+        "scenario": "Verify login fails when username field is empty",
+        "priority": "High",
+        "preconditions": [
+          "User is on login page"
+        ],
+        "steps": [
+          "Navigate to login page",
+          "Leave username field empty",
+          "Enter password from environment variable LOGIN_PASSWORD",
+          "Click login button"
+        ],
+        "expected_result": "Error message 'Username is required' is displayed",
+        "test_data": {
+          "password_env": "LOGIN_PASSWORD"
+        }
+      },
+      {
+        "test_id": "TC_004",
+        "module": "Dashboard",
+        "scenario": "Verify user dashboard loads successfully after login",
+        "priority": "High",
+        "preconditions": [
+          "User is logged in"
+        ],
+        "steps": [
+          "User is on the dashboard"
+        ],
+        "expected_result": "Dashboard loads successfully and displays user information",
+        "test_data": {}
+      },
+      {
+        "test_id": "TC_005",
+        "module": "Dashboard",
+        "scenario": "Verify user can search for products using search bar",
+        "priority": "Medium",
+        "preconditions": [
+          "User is on the dashboard"
+        ],
+        "steps": [
+          "Navigate to dashboard",
+          "Enter search term in search bar",
+          "Click search button"
+        ],
+        "expected_result": "Search results for the product are displayed",
+        "test_data": {}
+      },
+      {
+        "test_id": "TC_006",
+        "module": "Dashboard",
+        "scenario": "Verify user can filter products by price range",
+        "priority": "Medium",
+        "preconditions": [
+          "User is on the dashboard"
+        ],
+        "steps": [
+          "Navigate to dashboard",
+          "Select price range from filter options",
+          "Click apply filter button"
+        ],
+        "expected_result": "Products within the selected price range are displayed",
+        "test_data": {}
+      },
+      {
+        "test_id": "TC_007",
+        "module": "Dashboard",
+        "scenario": "Verify user can filter products by category",
+        "priority": "Medium",
+        "preconditions": [
+          "User is on the dashboard"
+        ],
+        "steps": [
+          "Navigate to dashboard",
+          "Select category from filter options",
+          "Click apply filter button"
+        ],
+        "expected_result": "Products within the selected category are displayed",
+        "test_data": {}
+      },
+      {
+        "test_id": "TC_008",
+        "module": "Dashboard",
+        "scenario": "Verify user can view product details",
+        "priority": "Medium",
+        "preconditions": [
+          "User is on the dashboard",
+          "At least one product exists"
+        ],
+        "steps": [
+          "Navigate to dashboard",
+          "Select a product from the product list"
+        ],
+        "expected_result": "Product details page is displayed with correct information",
+        "test_data": {}
+      },
+      {
+        "test_id": "TC_009",
+        "module": "Dashboard",
+        "scenario": "Verify user can add product to cart",
+        "priority": "High",
+        "preconditions": [
+          "User is on the dashboard",
+          "At least one product exists"
+        ],
+        "steps": [
+          "Navigate to dashboard",
+          "Select a product from the product list",
+          "Click add to cart button"
+        ],
+        "expected_result": "Product is successfully added to the cart",
+        "test_data": {}
+      },
+      {
+        "test_id": "TC_010",
+        "module": "Cart",
+        "scenario": "Verify that cart shows items added by user",
+        "priority": "High",
+        "preconditions": [
+          "User has added products to the cart"
+        ],
+        "steps": [
+          "Navigate to cart page"
+        ],
+        "expected_result": "Cart displays the added items",
+        "test_data": {}
+      },
+      {
+        "test_id": "TC_011",
+        "module": "Cart",
+        "scenario": "Verify user can remove an item from the cart",
+        "priority": "Medium",
+        "preconditions": [
+          "User has items in the cart"
+        ],
+        "steps": [
+          "Navigate to cart page",
+          "Click remove button on an item"
+        ],
+        "expected_result": "Item is successfully removed from the cart",
+        "test_data": {}
+      },
+      {
+        "test_id": "TC_012",
+        "module": "Cart",
+        "scenario": "Verify the total price is correctly calculated in the cart",
+        "priority": "High",
+        "preconditions": [
+          "User has added products to the cart"
+        ],
+        "steps": [
+          "Navigate to cart page"
+        ],
+        "expected_result": "Total price reflects the sum of all items in the cart",
+        "test_data": {}
+      },
+      {
+        "test_id": "TC_013",
+        "module": "Cart",
+        "scenario": "Verify user can proceed to checkout from the cart",
+        "priority": "High",
+        "preconditions": [
+          "User has added products to the cart"
+        ],
+        "steps": [
+          "Navigate to cart page",
+          "Click proceed to checkout button"
+        ],
+        "expected_result": "User is redirected to the checkout page",
+        "test_data": {}
+      },
+      {
+        "test_id": "TC_014",
+        "module": "Checkout",
+        "scenario": "Verify checkout page is displayed when proceeding from cart",
+        "priority": "High",
+        "preconditions": [
+          "User has products in the cart"
+        ],
+        "steps": [
+          "Navigate to cart page",
+          "Click proceed to checkout button"
+        ],
+        "expected_result": "Checkout page loads successfully",
+        "test_data": {}
+      },
+      {
+        "test_id": "TC_015",
+        "module": "Checkout",
+        "scenario": "Verify error message is displayed for invalid billing address fields",
+        "priority": "High",
+        "preconditions": [
+          "User is on the checkout page"
+        ],
+        "steps": [
+          "Navigate to checkout page",
+          "Fill in billing address with invalid data",
+          "Click continue button"
+        ],
+        "expected_result": "Error message for invalid billing address fields is displayed",
+        "test_data": {}
+      },
+      {
+        "test_id": "TC_016",
+        "module": "Checkout",
+        "scenario": "Verify user can successfully complete a payment",
+        "priority": "High",
+        "preconditions": [
+          "User is on the checkout page",
+          "All billing information is valid"
+        ],
+        "steps": [
+          "Navigate to checkout page",
+          "Fill in valid billing information",
+          "Click pay button"
+        ],
+        "expected_result": "Payment is successfully completed",
+        "test_data": {}
+      },
+      {
+        "test_id": "TC_017",
+        "module": "Order Summary",
+        "scenario": "Verify order summary displays correct order details after payment",
+        "priority": "High",
+        "preconditions": [
+          "User has successfully completed a payment"
+        ],
+        "steps": [
+          "Navigate to order summary page"
+        ],
+        "expected_result": "Order summary displays correct order details",
+        "test_data": {}
+      },
+      {
+        "test_id": "TC_018",
+        "module": "Order History",
+        "scenario": "Verify user can view past orders in order history",
+        "priority": "Medium",
+        "preconditions": [
+          "User is logged in"
+        ],
+        "steps": [
+          "Navigate to order history page"
+        ],
+        "expected_result": "Past orders are displayed in the order history",
+        "test_data": {}
+      },
+      {
+        "test_id": "TC_019",
+        "module": "Order History",
+        "scenario": "Verify user can filter past orders by status",
+        "priority": "Medium",
+        "preconditions": [
+          "User is on the order history page"
+        ],
+        "steps": [
+          "Select order status from filter options",
+          "Click apply filter button"
+        ],
+        "expected_result": "Past orders are displayed based on the selected status",
+        "test_data": {}
+      },
+      {
+        "test_id": "TC_020",
+        "module": "Order History",
+        "scenario": "Verify error message is displayed when there are no orders to show",
+        "priority": "Medium",
+        "preconditions": [
+          "User is logged in",
+          "User has no past orders"
+        ],
+        "steps": [
+          "Navigate to order history page"
+        ],
+        "expected_result": "Error message 'No orders to show' is displayed",
+        "test_data": {}
+      },
+      {
+        "test_id": "TC_021",
+        "module": "Cart",
+        "scenario": "Verify empty cart state shows correct message and icon",
+        "priority": "Medium",
+        "preconditions": [
+          "User has no items in the cart"
+        ],
+        "steps": [
+          "Navigate to cart page"
+        ],
+        "expected_result": "Correct empty cart message and icon is displayed",
+        "test_data": {}
+      },
+      {
+        "test_id": "TC_022",
+        "module": "Dashboard",
+        "scenario": "Verify pagination works correctly for product listings",
+        "priority": "Medium",
+        "preconditions": [
+          "User is on the dashboard",
+          "Multiple products are available"
+        ],
+        "steps": [
+          "Navigate to dashboard",
+          "Click next page button"
+        ],
+        "expected_result": "Next page of products is displayed",
+        "test_data": {}
+      },
+      {
+        "test_id": "TC_023",
+        "module": "Checkout",
+        "scenario": "Verify continue to payment button is disabled with invalid form",
+        "priority": "High",
+        "preconditions": [
+          "User is on the checkout page"
+        ],
+        "steps": [
+          "Navigate to checkout page",
+          "Fill in invalid billing information"
+        ],
+        "expected_result": "Continue to payment button is disabled",
+        "test_data": {}
+      },
+      {
+        "test_id": "TC_024",
+        "module": "Checkout",
+        "scenario": "Verify user is redirected back to cart when clicking 'Back to Cart'",
+        "priority": "Medium",
+        "preconditions": [
+          "User is on the checkout page"
+        ],
+        "steps": [
+          "Click 'Back to Cart' button"
+        ],
+        "expected_result": "User is redirected back to the cart page",
+        "test_data": {}
+      }
+    ]
+  },
+  "next_agent": "executor_agent"
+}

@@ -1,0 +1,752 @@
+# COMPREHENSIVE BUSINESS REQUIREMENTS DOCUMENT
+## Let's Shop E-Commerce Platform - Complete User Journey
+
+## TABLE OF CONTENTS
+1. [Overview](#1-overview)
+2. [Login Page](#2-login-page)
+3. [Home/Dashboard Page](#3-homedashboard-page)
+4. [Add to Cart & Cart Page](#4-add-to-cart--cart-page)
+5. [Checkout/Payment Page](#5-checkoutpayment-page)
+6. [Order Summary Page](#6-order-summary-page)
+7. [Order History Page](#7-order-history-page)
+8. [Test Cases Reference](#8-test-cases-reference)
+9. [Playwright Automation Guide](#9-playwright-automation-guide)
+
+---
+
+# 1. OVERVIEW
+
+## 1.1 Platform Scope
+- **Application Name:** Let's Shop
+- **URL:** https://rahulshettyacademy.com/client/
+- **Technology Stack:** Angular 12, Node.js API, MongoDB
+- **User Type:** Registered e-commerce customers
+- **Platform:** Web (Desktop, Tablet, Mobile)
+
+## 1.2 User Journey Flow
+```
+LOGIN → DASHBOARD → ADD TO CART → CART REVIEW →
+CHECKOUT → ORDER SUMMARY → ORDER HISTORY
+
+# 2. LOGIN PAGE
+
+**URL:** `https://rahulshettyacademy.com/auth/login`
+**Purpose:** User authentication and session management
+**Accessibility:** Public (unauthenticated users)
+
+## 2.1 Page Structure
+
+```
+┌────────────────────────────────────┐
+│                                    │
+│        LETS SHOP LOGO              │
+│                                    │
+│     LOGIN FORM                     │
+│  ┌──────────────────────────────┐  │
+│  │ Email:  [________________]   │  │
+│  │ Pass:   [________________]   │  │
+│  │                              │  │
+│  │  [LOGIN BUTTON]              │  │
+│  │                              │  │
+│  │ [Forgot Password Link]       │  │
+│  │ [New User? Register]         │  │
+│  └──────────────────────────────┘  │
+│                                    │
+│ © Design by Kunal Sharma           │
+└────────────────────────────────────┘
+```
+
+## 2.2 Form Fields
+
+| Field | Type | Validation | Required | Placeholder |
+|-------|------|-----------|----------|-------------|
+| **Email** | Text Input | RFC 5322, case-insensitive | Yes | Email address |
+| **Password** | Password Input | Min 6 chars, masked | Yes | Password |
+
+## 2.3 Form Controls
+
+| Control | Action | Behavior |
+|---------|--------|----------|
+| **Login Button** | Click | Submit form, validate, authenticate |
+| **Forgot Password** | Click | Navigate to `/auth/password-reset` |
+| **Register Link** | Click | Navigate to `/auth/register` |
+
+## 2.4 Validation Rules
+
+```
+Email Validation:
+- Format: valid@email.com (RFC 5322)
+
+Password Validation:
+- For worng password error message should be: "Incorrect email or password"
+
+```
+
+
+# 3. HOME/DASHBOARD PAGE
+
+**URL:** `https://rahulshettyacademy.com/client/dashboard`
+**Purpose:** Product browsing, search, filter, add-to-cart
+**Accessibility:** Authenticated users only
+
+## 3.1 Page Components
+
+### 3.1.1 Navigation Bar
+```
+┌─────────────────────────────────────────────┐
+│ [Logo] [HOME] [ORDERS] [CART] [SIGN OUT]   │
+└─────────────────────────────────────────────┘
+```
+
+**Navigation Items:**
+- **Logo/Home:** Navigate to `/dashboard`
+- **HOME:** `/dashboard`
+- **ORDERS:** `/dashboard/myorders`
+- **CART:** `/dashboard/cart` (with item count badge)
+- **SIGN OUT:** POST `/api/ecom/auth/logout` → redirect `/auth/login`
+
+### 3.1.2 Filter Panel (Left Sidebar)
+```
+FILTERS
+├─ Search: [_____________]
+├─ Price Range: Min [___] Max [___]
+├─ Categories: ☐ Fashion ☐ Electronics ☐ Household
+├─ Sub-Categories: ☐ T-shirts ☐ Shirts ☐ Shoes ☐ Mobiles ☐ Laptops
+└─ Gender: ☐ Men ☐ Women
+```
+
+**Filter Specifications:**
+- Type: Form controls (inputs, checkboxes, selectors)
+- Behavior: Real-time filtering (debounce 500ms)
+- Persistence: Session storage
+- Clear option: "Clear All Filters"
+
+### 3.1.3 Product Grid (Center)
+```
+┌─────────────┐ ┌─────────────┐ ┌─────────────┐
+│ [Product 1] │ │ [Product 2] │ │ [Product 3] │
+│ Name        │ │ Name        │ │ Name        │
+│ $ 11500     │ │ $ 11500     │ │ $ 55000     │
+│ [View][+]   │ │ [View][+]   │ │ [View][+]   │
+└─────────────┘ └─────────────┘ └─────────────┘
+```
+
+**Product Card Elements:**
+- Product image (295×200px, clickable)
+- Product name (uppercase)
+- Price ($ format)
+- View button (navigate to product detail)
+- Add to Cart button (+ icon)
+
+### 3.1.4 Pagination
+```
+[◄ Previous] [1] [2] [3] [►] | Showing 8 of 150
+```
+
+## 3.2 Search Functionality
+
+**Requirement ID:** SEARCH-001
+
+```
+Field: [Search Product Name____________]
+
+Behavior:
+- Real-time search (debounce 300ms)
+
+```
+
+**Test Locators:**
+```javascript
+const searchInput = 'input[formcontrolname="productName"]';
+const searchResults = '.product-grid .card';
+```
+
+## 3.3 Filter Functionality
+
+### 3.3.1 Price Filter
+```
+Min Price: [______]  Max Price: [______]
+
+Validation:
+- Min must be ≤ Max
+- Range: $0 - $100,000
+```
+
+**Test Locators:**
+```javascript
+const minPriceInput = 'input[formcontrolname="minPrice"]';
+const maxPriceInput = 'input[formcontrolname="maxPrice"]';
+```
+
+### 3.3.2 Category Filter
+```
+☐ Fashion
+☐ Electronics
+☐ Household
+
+Behavior: Multi-select
+```
+
+**Test Locators:**
+```javascript
+const categoryCheckbox = 'input[type="checkbox"][formcontrolname*="category"]';
+```
+
+### 3.3.3 Sub-Category Filter
+```
+☐ T-shirts
+☐ Shirts
+☐ Shoes
+☐ Mobiles
+☐ Laptops
+
+Behavior: Dependent on category selection
+```
+
+### 3.3.4 Gender Filter
+```
+☐ Men
+☐ Women
+```
+
+## 3.4 Product Card Actions
+
+### 3.4.1 View Button
+```
+Click "View" → Navigate to /dashboard/product/{productId}
+
+Details Page Shows:
+- Full product images
+- Detailed description
+- Customer reviews
+- Size/color options
+- Stock status
+- Related products
+- Add to Cart button
+```
+
+**Test Locators:**
+```javascript
+const viewButton = 'button .fa-eye';
+const productName = '.card-body h5 b';
+const productPrice = '.card-body .text-muted';
+```
+
+### 3.4.2 Add to Cart Button
+```
+Click "+" icon → Add product to cart
+
+Feedback:
+- Show toast: "Added to cart!"
+- Update cart badge: +1
+- Keep user on page
+
+
+```
+
+**Test Locators:**
+```javascript
+const addToCartButton = 'button .fa-shopping-cart';
+const cartBadge = 'label:contains("Cart Count")';
+const successToast = '.toast-success';
+```
+
+# 4. ADD TO CART & CART PAGE
+
+**URL:** `https://rahulshettyacademy.com/client/cart`
+**Purpose:** Review and manage shopping cart
+**Accessibility:** Authenticated users only
+
+## 4.1 Cart Page Structure
+
+```
+┌──────────────────────────────────────────────┐
+│ [HOME] [ORDERS] [CART ✓] [LOGOUT]           │
+├──────────────────────────────────────────────┤
+│ My Cart                 [Continue Shopping]  │
+├──────────────────────────────────────────────┤
+│                                              │
+│ CART ITEMS (60% width)                       │
+│ ┌────────────────────────────────────────┐   │
+│ │ [Img] ADIDAS ORIGINAL      │ $11500 │ │   │
+│ │ ID: #6960eae1c941646b7a8b3ed3    │   │   │
+│ │ Stock: In Stock           │ [Buy][×] │   │
+│ └────────────────────────────────────────┘   │
+│                                              │
+│ CART SUMMARY (35% width)                     │
+│ ┌──────────────────────────┐                 │
+│ │ Subtotal: $11500         │                 │
+│ │ Tax (10%): $1150         │                 │
+│ │ Shipping: FREE           │                 │
+│ │ ──────────────────────   │                 │
+│ │ TOTAL: $12650            │                 │
+│ │ [CHECKOUT BUTTON]        │                 │
+│ └──────────────────────────┘                 │
+│                                              │
+│ © Design by Kunal Sharma                     │
+└──────────────────────────────────────────────┘
+```
+
+## 4.2 Cart Item Display
+
+**For Each Product:**
+
+| Component | Details | Locator |
+|-----------|---------|---------|
+| **Product Image** | 8em×auto, clickable | `img.itemImg` |
+| **Item Number** | Product ID (#...) | `p.itemNumber` |
+| **Product Name** | Uppercase, bold | `h3` |
+| **MRP** | $ Price | `p:contains("MRP")` |
+| **Stock Status** | "In Stock" (green) | `p.stockStatus` |
+| **Product Total** | Qty × Price | `p.prodTotal` |
+| **Buy Now Button** | Primary, navigates to checkout | `button.btn-primary` |
+| **Remove Button** | Trash icon, removes item | `button.btn-danger .fa-trash-o` |
+
+## 4.3 Cart Item Actions
+
+### 4.3.1 Remove Item
+```
+Click Trash Icon (×) →
+  Show Confirmation (optional):
+    "Are you sure?" [Cancel] [Remove]
+  →
+  DELETE /api/ecom/cart/remove-from-cart/{productId}
+  →
+  Remove from UI with fade animation
+  →
+  Recalculate totals
+  →
+  Show toast: "Item removed from cart"
+  →
+  Update cart badge
+```
+
+**Test Locators:**
+```javascript
+const removeButton = 'button.btn-danger';
+const itemCard = '.items';
+const confirmDialog = '.swal2-container';
+```
+
+### 4.3.2 Buy Now (Individual Item)
+```
+Click "Buy Now" on item →
+  Validate cart
+  →
+  POST /checkout/initiate
+  →
+  Redirect to /checkout?productId={id}
+  →
+  Show checkout form with item details
+```
+
+**Test Locators:**
+```javascript
+const buyNowButton = 'button.btn-primary:contains("Buy Now")';
+```
+
+## 4.4 Cart Summary & Checkout
+
+### 4.4.1 Cart Totals Calculation
+
+```javascript
+Subtotal = Sum of all (item.price × item.quantity)
+Tax = Subtotal × 0.10 (if applicable)
+Shipping = 0 (if subtotal >= 5000) else "Contact"
+Total = Subtotal + Tax + Shipping
+```
+
+**Test Locators:**
+```javascript
+const subtotal = 'span.value:contains("Subtotal")';
+const total = '.totalRow.final .value';
+const checkoutButton = 'button:contains("Checkout")';
+```
+
+### 4.4.2 Checkout Button
+```
+Click "Checkout" →
+  Validate cart has items
+  →
+  POST /checkout/initiate
+  →
+  Redirect to /checkout
+  →
+  Display payment form
+
+Disabled if: Cart empty
+Loading: Show spinner during processing
+```
+
+## 4.5 Continue Shopping Button
+```
+Click "Continue Shopping" →
+  Navigate to /dashboard
+  →
+  Maintain cart in background
+```
+
+**Test Locators:**
+```javascript
+const continueShoppingButton = 'button[routerlink="/dashboard"]';
+```
+
+## 4.6 Empty Cart State
+
+```
+If cart.items.length === 0:
+  Show message: "Your cart is empty"
+  Show icon: Shopping cart icon
+  Disable checkout button
+  Enable continue shopping button
+```
+
+**Test Locators:**
+```javascript
+const emptyCartMessage = '.empty-cart-message';
+```
+
+# 5. CHECKOUT/PAYMENT PAGE
+
+**URL:** `https://rahulshettyacademy.com/client/checkout`
+**Purpose:** Payment processing and order placement
+**Accessibility:** Authenticated users with cart items
+
+## 5.1 Checkout Page Structure
+
+```
+┌────────────────────────────────────────────────┐
+│ CHECKOUT - STEP 1: SHIPPING                    │
+├────────────────────────────────────────────────┤
+│                                                │
+│ BILLING ADDRESS                                │
+│ ┌──────────────────────────────────────────┐   │
+│ │ Full Name: [_________________________]    │   │
+│ │ Email:     [_________________________]    │   │
+│ │ Phone:     [_________________________]    │   │
+│ │ Address:   [_________________________]    │   │
+│ │ City:      [_________________________]    │   │
+│ │ State:     [_________________________]    │   │
+│ │ Zip Code:  [_________]                   │   │
+│ │ Country:   [Select Country ________]     │   │
+│ └──────────────────────────────────────────┘   │
+│                                                │
+│ ORDER REVIEW (Right Panel - 35%)               │
+│ ┌──────────────────────────────────────────┐   │
+│ │ ADIDAS ORIGINAL × 1      $11500          │   │
+│ │ ────────────────────────────────────     │   │
+│ │ Subtotal:  $11500                        │   │
+│ │ Tax (10%): $1150                         │   │
+│ │ Shipping:  FREE                          │   │
+│ │ ════════════════════════════════════     │   │
+│ │ TOTAL:     $12650                        │   │
+│ └──────────────────────────────────────────┘   │
+│                                                │
+│ [Back to Cart]          [Continue to Payment] │
+└────────────────────────────────────────────────┘
+```
+
+## 5.2 Checkout Form Fields
+
+### 5.2.1 Billing Address Form
+
+| Field | Type | Validation | Required | Error |
+|-------|------|-----------|----------|-------|
+| **Country** | Select | From dropdown | Yes | "Select country" |
+
+### 5.2.2 Form Locators
+
+```javascript
+const fullNameInput = 'input[formcontrolname="fullName"]';
+const emailInput = 'input[formcontrolname="email"]';
+const phoneInput = 'input[formcontrolname="phone"]';
+const addressInput = 'textarea[formcontrolname="address"]';
+const cityInput = 'input[formcontrolname="city"]';
+const stateInput = 'input[formcontrolname="state"]';
+const zipInput = 'input[formcontrolname="zipCode"]';
+const countrySelect = 'select[formcontrolname="country"]';
+```
+
+## 5.3 Order Review Panel
+
+**Right Sidebar (Sticky):**
+
+```
+ORDER SUMMARY
+├─ Items in cart with prices
+├─ Subtotal
+├─ Tax calculation
+├─ Shipping cost
+├─ TOTAL (bold, large)
+└─ [Continue to Payment]
+```
+
+
+## 5.4 Checkout Form Validation
+
+On Submit:
+IF form.valid THEN
+  - If valid → Continue to payment
+  - If invalid → Show error, enable form
+ELSE
+  - Show field errors
+  - Highlight invalid fields
+  - Keep form enabled
+END IF
+```
+
+## 5.6 Continue to Payment Button
+
+**Test Locators:**
+```javascript
+const continuePaymentButton = 'button:contains("Continue to Payment")';
+const backToCartButton = 'button:contains("Back to Cart")';
+---
+
+# 6. ORDER SUMMARY PAGE
+
+**URL:** `https://rahulshettyacademy.com/client/checkout/summary`
+**Purpose:** Confirmation of order after payment
+**Accessibility:** After successful checkout
+
+## 6.1 Order Summary Layout
+
+```
+┌──────────────────────────────────────────────┐
+│ ORDER CONFIRMATION                           │
+├──────────────────────────────────────────────┤
+│                                              │
+│ ORDER ID: ORD-2026030601                    │
+│ Status: Order Placed Successfully           │
+│                                              │
+│ ITEMS ORDERED                                │
+│ ┌──────────────────────────────────────────┐ │
+│ │ 1. ADIDAS ORIGINAL × 1         $11500    │ │
+│ │ 2. ZARA COAT 3 × 2             $23000    │ │
+│ │                                          │ │
+│ │ Subtotal:        $34500                  │ │
+│ │ Tax (10%):       $3450                   │ │
+│ │ Shipping:        FREE                    │ │
+│ │ ─────────────────────────────────────── │ │
+│ │ TOTAL:           $37950                  │ │
+│ └──────────────────────────────────────────┘ │
+│                                              │
+│ SHIPPING ADDRESS                             │
+│ ┌──────────────────────────────────────────┐ │
+│ │ John Doe                                  │ │
+│ │ john@example.com                          │ │
+│ │ 9876543210                                │ │
+│ │ 123 Main St, New York, NY 10001          │ │
+│ │                                          │ │
+│ │ Estimated Delivery: 2026-03-10          │ │
+│ └──────────────────────────────────────────┘ │
+│                                              │
+│ [Download Invoice] [View Orders] [Continue] │
+└──────────────────────────────────────────────┘
+```
+
+## 6.2 Order Summary Content
+
+### 6.2.1 Order Header
+
+```
+Order ID: {orderId}
+Order Date: {timestamp}
+Status: Order Placed Successfully
+Payment Status: Completed
+```
+
+### 6.2.2 Items Summary
+
+```
+For each item:
+- Product Name (from cart)
+- Quantity (from cart)
+- Unit Price
+- Line Total (Qty × Price)
+
+Format:
+1. ADIDAS ORIGINAL × 1    $11500
+2. ZARA COAT 3 × 2        $23000
+```
+
+### 6.2.3 Pricing Summary
+
+```
+Subtotal: $34500      (sum of all item totals)
+Tax (10%): $3450      (subtotal × tax rate)
+Shipping: FREE        (if subtotal >= 5000)
+────────────────────
+TOTAL: $37950         (subtotal + tax + shipping)
+```
+
+### 6.2.4 Shipping Details
+
+```
+Name: {fullName}
+Email: {email}
+Phone: {phone}
+Address: {address}
+City, State ZIP: {city}, {state} {zipCode}
+Country: {country}
+
+Estimated Delivery: {deliveryDate} (T+3 business days)
+Tracking Number: TRACK-{orderId}-{timestamp}
+```
+
+## 6.3 Order Summary Locators
+
+```javascript
+const orderId = 'p:contains("ORDER ID")';
+const orderStatus = 'p:contains("Status")';
+const itemsList = '.items-list li';
+const subtotal = 'span:contains("Subtotal")';
+const total = '.total-amount';
+const shippingAddress = '.shipping-address';
+const deliveryDate = 'p:contains("Estimated Delivery")';
+const trackingNumber = 'p:contains("Tracking Number")';
+```
+
+## 6.4 Order Summary Actions
+
+### 6.4.2 View Orders
+```
+Click "View Orders" →
+  Navigate to /dashboard/myorders
+  →
+  Display order history
+```
+
+### 6.4.3 Continue Shopping
+```
+Click "Continue Shopping" →
+  Navigate to /dashboard
+  →
+  Clear order summary session
+  →
+  Reload products
+```
+
+**Test Locators:**
+```javascript
+const downloadInvoiceButton = 'button:contains("Download Invoice")';
+const viewOrdersButton = 'button:contains("View Orders")';
+const continueShoppingButton = 'button:contains("Continue Shopping")';
+```
+
+# 7. ORDER HISTORY PAGE
+
+**URL:** `https://rahulshettyacademy.com/client/dashboard/myorders`
+**Purpose:** View all customer orders
+**Accessibility:** Authenticated users only
+
+## 7.1 Order History Page Structure
+
+```
+┌────────────────────────────────────────────┐
+│ [HOME] [ORDERS ✓] [CART] [LOGOUT]         │
+├────────────────────────────────────────────┤
+│ MY ORDERS                                  │
+│                                            │
+│ FILTER & SORT                              │
+│ Status: [All ▼] | Sort: [Date ▼]          │
+│                                            │
+│ ORDERS TABLE                               │
+│ ┌──────────────────────────────────────┐   │
+│ │ Order ID │ Date │ Status │ Total │... │   │
+│ ├──────────────────────────────────────┤   │
+│ │ORD-001 │2026-03-05│Delivered│$37950│[V]│   │
+│ │ORD-002 │2026-03-04│Shipped │$55000│[V]│   │
+│ │ORD-003 │2026-03-03│Pending │$10000│[V]│   │
+│ └──────────────────────────────────────┘   │
+│                                            │
+│ Pagination: [◄] 1 [►]                     │
+└────────────────────────────────────────────┘
+```
+
+## 7.2 Orders Table Columns
+
+| Column | Type | Width | Content | Sortable |
+|--------|------|-------|---------|----------|
+| **Order ID** | Text | 15% | ORD-001 | Yes |
+| **Date** | Date | 15% | 2026-03-05 | Yes |
+| **Status** | Badge | 15% | Delivered/Pending | Yes |
+| **Total** | Currency | 15% | $37,950 | Yes |
+| **Items** | Number | 10% | 2 items | Yes |
+| **Actions** | Button | 30% | View, Reorder, Download | No |
+
+## 7.5 Order List Locators
+
+```javascript
+const ordersTable = '.orders-table';
+const orderRows = '.orders-table tbody tr';
+const statusFilter = 'select[formcontrolname="status"]';
+const sortDropdown = 'select[formcontrolname="sortBy"]';
+const viewButton = 'button:contains("View")';
+const reorderButton = 'button:contains("Reorder")';
+const downloadButton = 'button:contains("Download")';
+const paginationNext = 'button:contains("►")';
+const paginationPrev = 'button:contains("◄")';
+```
+
+## 7.6 Order Actions
+
+### 7.6.1 View Order Details
+```
+Click "View" button →
+  Open modal or navigate to /dashboard/orders/{orderId}
+  →
+  Display full order details:
+    - Order ID
+    - Order Date
+    - Status & timeline
+    - Items list
+    - Shipping address
+    - Billing info
+    - Payment method
+    - Totals
+    - Tracking number
+    - Delivery date
+
+Modal Close: Click X or outside
+```
+## 7.7 Order Detail Modal
+
+```
+┌─────────────────────────────────────────┐
+│ ORDER DETAILS                        [×] │
+├─────────────────────────────────────────┤
+│ Order ID: ORD-001                       │
+│ Date: 2026-03-05                        │
+│ Status: Delivered                       │
+│ Payment: Completed                      │
+│                                         │
+│ ITEMS:                                  │
+│ 1. ADIDAS ORIGINAL × 1    $11500        │
+│ 2. ZARA COAT 3 × 2        $23000        │
+│                                         │
+│ Subtotal:     $34500                    │
+│ Tax (10%):    $3450                     │
+│ Shipping:     FREE                      │
+│ ─────────────────────────────────────  │
+│ Total:        $37950                    │
+│                                         │
+│ SHIPPING ADDRESS:                       │
+│ John Doe, 123 Main St,                  │
+│ New York, NY 10001                      │
+│                                         │
+│ Delivered on: 2026-03-08                │
+│ Tracking: TRACK-ORD-001-...             │
+│                                         │
+│ [Download Invoice] [Reorder] [Close]    │
+└─────────────────────────────────────────┘
+```
+## 7.9 Empty Orders State
+
+```
+If orders.length === 0:
+  Show message: "You have no orders yet"
+  Show icon: Empty box icon
+  Show button: "Start Shopping" → /dashboard
+```
+
