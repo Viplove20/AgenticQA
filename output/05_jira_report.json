@@ -1,9 +1,0 @@
-{
-  "agent": "jira_agent",
-  "status": "JIRA_TICKETS_CREATED",
-  "timestamp": "2026-03-08T07:46:55.912372",
-  "jira_issues": [],
-  "total_issues_created": 0,
-  "total_issues_failed": 0,
-  "summary": "Created 0 JIRA issues for 0 failed tests"
-}

@@ -2,57 +2,169 @@ import asyncio
 import os
 import sys
 import json
+import subprocess
+import re
 from pathlib import Path
-from dotenv import load_dotenv
 
+from autogen_agentchat.ui import Console
+from dotenv import load_dotenv
 from autogen_agentchat.agents import AssistantAgent
 from autogen_ext.models.openai import OpenAIChatCompletionClient
-from autogen_ext.tools.mcp import McpWorkbench, StdioServerParams
 from autogen_core.model_context import BufferedChatCompletionContext
-
-# Windows Event Loop Fix
-if sys.platform == 'win32':
-    try:
-        asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
-    except Exception:
-        asyncio.set_event_loop_policy(asyncio.DefaultEventLoopPolicy())
+from playwright.async_api import async_playwright
+from agents.jira_agent import JiraAgent
 
 # Load environment variables
 load_dotenv()
 
+async def capture_page_dom(url: str) -> str:
+    """Opens the URL with a real browser and returns the full HTML for AI to inspect."""
+    print(f"\n🔍 Capturing DOM from: {url}")
+    async with async_playwright() as p:
+        browser = await p.chromium.launch(headless=True)
+        page = await browser.new_page()
+        await page.goto(url, wait_until="networkidle")
+        html = await page.content()
+        await browser.close()
+    print("✓ DOM captured\n")
+    return html
+
+async def capture_authenticated_dom(url: str, username: str, password: str) -> str:
+    """Logs in first, then captures DOM from an authenticated page."""
+    print(f"\n🔍 Capturing authenticated DOM from: {url}")
+    async with async_playwright() as p:
+        browser = await p.chromium.launch(headless=True)
+        page = await browser.new_page()
+
+        # Login first
+        await page.goto('https://rahulshettyacademy.com/client/auth/login', wait_until="networkidle")
+        await page.locator('#userEmail').fill(username)
+        await page.locator('#userPassword').fill(password)
+        await page.locator('#login').click()
+        await page.wait_for_url('**/dashboard**', timeout=15000)
+
+        # Now navigate to target page
+        await page.goto(url, wait_until="networkidle")
+        await page.wait_for_timeout(2000)  # wait for Angular to render
+        html = await page.content()
+        await browser.close()
+    print(f"✓ Authenticated DOM captured from {url}\n")
+    return html
+
+def extract_code_block(text: str) -> str:
+    """Extract code from markdown code blocks if present."""
+    match = re.search(r"```(?:typescript|javascript|ts|js)?\n(.*?)```", text, re.DOTALL)
+    if match:
+        return match.group(1).strip()
+    return text.strip()
+
+
+def run_playwright_tests(test_file_path: Path, output_path: Path) -> dict:
+    """
+    Actually execute the generated Playwright test file using npx playwright test.
+    Returns parsed results from the JSON report.
+    """
+    report_path = output_path / "playwright-report" / "results.json"
+    report_path.parent.mkdir(parents=True, exist_ok=True)
+
+    print(f"\n🚀 Running Playwright tests from: {test_file_path}")
+    print(f"📄 Report will be saved to: {report_path}\n")
+
+    env = os.environ.copy()
+    # Ensure LOGIN_USERNAME and LOGIN_PASSWORD are set
+    if not env.get("LOGIN_USERNAME") or not env.get("LOGIN_PASSWORD"):
+        print("⚠️  WARNING: LOGIN_USERNAME or LOGIN_PASSWORD not set in .env")
+
+    project_root = Path(__file__).parent.resolve()  # always the folder where main.py lives
+
+    env = os.environ.copy()
+    # env["LOGIN_USERNAME"] = os.getenv("LOGIN_USERNAME", "")
+    # env["LOGIN_PASSWORD"] = os.getenv("LOGIN_PASSWORD", "")
+    env["LOGIN_USERNAME"] = "viplovepradhan111@gmail.com"
+    env["LOGIN_PASSWORD"] = "test123"
+
+    result = subprocess.run(
+        ["cmd", "/c", "npx", "playwright", "test", "--headed"],
+        cwd=str(project_root),
+        capture_output=False,
+        env=env,
+        timeout=900
+    )
+
+    # Parse the JSON report playwright generates
+    if report_path.exists():
+        with open(report_path, "r", encoding="utf-8") as f:
+            raw = json.load(f)
+
+        passed = sum(
+            1 for suite in raw.get("suites", [])
+            for spec in suite.get("specs", [])
+            for test in spec.get("tests", [])
+            if test.get("status") == "expected"
+        )
+        failed_tests = [
+            {
+                "test_id": spec.get("title", ""),
+                "failure_reason": test.get("results", [{}])[0].get("error", {}).get("message", "Unknown")
+            }
+            for suite in raw.get("suites", [])
+            for spec in suite.get("specs", [])
+            for test in spec.get("tests", [])
+            if test.get("status") == "unexpected"
+        ]
+        total = passed + len(failed_tests)
+        return {
+            "total_tests": total,
+            "passed": passed,
+            "failed": len(failed_tests),
+            "pass_rate": f"{(passed/total*100):.2f}%" if total > 0 else "0%",
+            "failed_tests": failed_tests,
+            "return_code": result.returncode
+        }
+    else:
+        print("⚠️  Playwright JSON report not found. Tests may have failed to start.")
+        return {
+            "total_tests": 0,
+            "passed": 0,
+            "failed": 0,
+            "pass_rate": "0%",
+            "failed_tests": [],
+            "error": "Playwright report not generated. Check that playwright is installed: npx playwright install",
+            "return_code": result.returncode
+        }
+
+def push_to_github():
+
+    answer = input("\nDo you want to push the changes to GitHub? (Y/N): ")
+
+    if answer.lower() in ["y", "yes"]:
+
+        print("📦 Committing and pushing code to GitHub...")
+
+        subprocess.run(["git", "add", "."])
+        subprocess.run(["git", "commit", "-m", "AI generated tests and execution results"])
+        subprocess.run(["git", "push"])
+
+        print("✅ Code pushed to GitHub")
+
+    else:
+        print("❌ Push cancelled")
 
 async def main():
-    """
-    Sequential multi-agent QA automation system
-
-    Uses sequential workflow (Step 1 → Step 2 → Step 3...) instead of group chat.
-    This avoids the MCP workbench initialization timing issues.
-
-    Workflow:
-    1. Planner Agent → Generate test scenarios
-    2. Test Agent → Generate test cases
-    3. Executor Agent → Execute tests with Playwright
-    4. Reporter Agent → Generate report
-    5. JIRA Agent → Create bug tickets
-    """
-
     print("\n" + "=" * 80)
     print("MASTER AGENT: Starting Agent Team Collaboration...")
     print("=" * 80)
 
-    # Get API keys
     openai_key = os.getenv("OPENAI_API_KEY")
     if not openai_key:
         print("❌ OPENAI_API_KEY not found in environment")
         return
 
-    # Initialize model client
     model_client = OpenAIChatCompletionClient(
-        model="gpt-4o-mini",
+        model="gpt-4o",
         api_key=openai_key
     )
 
-    # Read business requirements
     brd_path = Path("requirements.txt")
     if not brd_path.exists():
         print(f"❌ {brd_path} not found")
@@ -61,44 +173,22 @@ async def main():
     with open(brd_path, "r", encoding="utf-8") as f:
         brd = f.read()
 
-    # Create output directory
     output_path = Path("output")
     output_path.mkdir(parents=True, exist_ok=True)
 
-    # Load prompts
+    # Directory where generated .spec.ts files will be saved
+    tests_dir = Path("tests/playwright/generated")
+    tests_dir.mkdir(parents=True, exist_ok=True)
+
     def load_prompt(filename: str) -> str:
-        prompt_path = Path("prompts") / f"{filename}"
+        prompt_path = Path("prompts") / filename
         if prompt_path.exists():
             with open(prompt_path, "r", encoding="utf-8") as f:
                 return f.read()
-        defaults = {
-            "planner_agent.md": """You are a Test Planner Agent. Analyze business requirements and generate 
-comprehensive test scenarios. For each scenario, provide: scenario ID, module name, and description.
-Output your scenarios clearly and end with: SCENARIO_GENERATION_COMPLETE""",
-
-            "test_agent.md": """You are a Test Case Generator. Convert test scenarios into detailed test cases 
-with step-by-step instructions, expected results, and test data. Output as JSON format.
-End with: TEST_CASES_GENERATION_COMPLETE""",
-
-            "executor_agent.md": """You are a Test Executor with Playwright capabilities. 
-Execute test cases using Playwright. Report results with pass/fail status for each test.
-Output as JSON with format: {"total_tests": N, "passed": N, "failed": N, "pass_rate": "X%", "failed_tests": [...]}
-End with: TEST_EXECUTION_COMPLETE""",
-
-            "reporter_agent.md": """You are a Test Report Generator. Create comprehensive test reports 
-from execution results. Include: total tests, passed, failed, pass rate, and failed test details.
-Output as JSON format.
-End with: REPORT_GENERATION_COMPLETE""",
-
-            "jira_agent.md": """You are a JIRA Bug Creator with JIRA capabilities. 
-For failed tests, create JIRA bug tickets with test details.
-Output the JIRA tickets created.
-End with: JIRA_CREATION_COMPLETE""",
-        }
-        return defaults.get(filename, f"You are a {filename.replace('.md', '')} agent.")
+        return f"You are a {filename.replace('.md', '')} agent."
 
     try:
-        # STEP 1: PLANNER AGENT - Generate Test Scenarios
+        # ── STEP 1: PLANNER AGENT ────────────────────────────────────────────
         print("\n" + "=" * 80)
         print("STEP 1: PLANNER AGENT - Generating Test Scenarios")
         print("=" * 80 + "\n")
@@ -112,14 +202,12 @@ End with: JIRA_CREATION_COMPLETE""",
 
         planner_result = await planner_agent.run(task=brd)
         planner_output = planner_result.messages[-1].content
-        print(planner_output)
 
-        # Save planner output
         with open(output_path / "01_planner_scenarios.md", "w", encoding="utf-8") as f:
             f.write(planner_output)
         print("\n✓ Planner output saved\n")
 
-        # STEP 2: TEST AGENT - Generate Test Cases
+        # ── STEP 2: TEST AGENT ───────────────────────────────────────────────
         print("=" * 80)
         print("STEP 2: TEST AGENT - Generating Test Cases")
         print("=" * 80 + "\n")
@@ -133,49 +221,131 @@ End with: JIRA_CREATION_COMPLETE""",
 
         test_result = await test_agent.run(task=planner_output)
         test_output = test_result.messages[-1].content
-        print(test_output)
 
-        # Save test output
         with open(output_path / "02_test_cases.json", "w", encoding="utf-8") as f:
             f.write(test_output)
-        print("\n✓ Test output saved\n")
+        print("\n✓ Test cases saved\n")
 
-        # STEP 3: EXECUTOR AGENT - Execute Tests with Playwright MCP
+        # ── STEP 3: EXECUTOR AGENT — generates .spec.ts file ─────────────────
         print("=" * 80)
-        print("STEP 3: EXECUTOR AGENT - Executing Tests")
+        print("STEP 3: EXECUTOR AGENT - Generating Playwright Test Script")
         print("=" * 80 + "\n")
 
-        # Configure Playwright MCP
-        playwright_server_param = StdioServerParams(
-            command="npx",
-            args=["-y", "@playwright/mcp@latest"],
-            timeout=120,
-            request_timeout=30,
-            read_timeout_second=60
+        # Capture real DOM from the login page
+        username = os.getenv("LOGIN_USERNAME", "")
+        password = os.getenv("LOGIN_PASSWORD", "")
+
+        login_dom = await capture_page_dom(
+            "https://rahulshettyacademy.com/client/#/auth/login")
+
+        dashboard_dom = await capture_authenticated_dom(
+            "https://rahulshettyacademy.com/client/#/dashboard/dash",
+            username, password)
+
+        cart_dom = await capture_authenticated_dom(
+            "https://rahulshettyacademy.com/client/dashboard/cart",
+            username, password)
+
+        order_dom = await capture_authenticated_dom(
+            "https://rahulshettyacademy.com/client/#/dashboard/myorders",
+            username, password)
+
+        # Truncate to avoid token limits - first 8000 chars is enough for locators
+        login_dom_snippet = login_dom[:8000]
+        dashboard_dom_snippet = dashboard_dom[:8000]
+        cart_dom_snippet = cart_dom[:8000]
+        order_dom_snippet = order_dom[:8000]
+
+        # KEY CHANGE: the executor prompt now asks for a proper .spec.ts file
+        executor_system_prompt = (load_prompt("executor_agent.md"))
+#                                   + f"""
+#
+# CRITICAL: Output ONLY raw TypeScript. No markdown fences.
+#
+# Here is the REAL HTML DOM of the login page. Extract locators ONLY from this:
+#
+# LOGIN PAGE DOM:
+# {login_dom_snippet}
+#
+# DASHBOARD PAGE DOM:
+# {dashboard_dom_snippet}
+#
+# CART PAGE DOM:
+# {cart_dom_snippet}
+#
+# ORDER PAGE DOM:
+# {order_dom_snippet}
+#
+# RULES:
+# - Use `process.env.LOGIN_USERNAME ?? ''` and `process.env.LOGIN_PASSWORD ?? ''` for credentials
+# - Use `test.beforeEach` for login — never repeat login inside individual tests
+# - Never navigate back to /login inside a test body
+# - Use `await page.waitForURL('**/dashboard**')` after login
+# - Base URL: https://rahulshettyacademy.com/client
+# """)
+
+
+        executor_agent = AssistantAgent(
+            name="executor_agent",
+            model_client=model_client,
+            system_message=executor_system_prompt,
+            model_context=BufferedChatCompletionContext(buffer_size=10)
         )
 
-        pw_workbench = McpWorkbench(playwright_server_param)
+        executor_result = await executor_agent.run(task=test_output)
+        executor_output = executor_result.messages[-1].content
 
-        # ✅ Initialize executor ONLY when workbench is ready
-        async with pw_workbench as pw_wb:
-            executor_agent = AssistantAgent(
-                name="executor_agent",
-                model_client=model_client,
-                workbench=pw_wb,
-                system_message=load_prompt("executor_agent.md"),
-                model_context=BufferedChatCompletionContext(buffer_size=6)
-            )
+        # Extract and save the .spec.ts file
+        spec_code = extract_code_block(executor_output)
+        spec_file = tests_dir / "generated_tests.spec.ts"
 
-            executor_result = await executor_agent.run(task=test_output)
-            executor_output = executor_result.messages[-1].content
-            print(executor_output)
+        with open(spec_file, "w", encoding="utf-8") as f:
+            f.write(spec_code)
 
-            # Save executor output
-            with open(output_path / "03_executor_results.json", "w", encoding="utf-8") as f:
-                f.write(executor_output)
-            print("\n✓ Executor output saved\n")
+        with open(output_path / "03_generated_spec.ts", "w", encoding="utf-8") as f:
+            f.write(spec_code)
 
-        # STEP 4: REPORTER AGENT - Generate Report
+        print(f"\n✓ Playwright spec file saved to: {spec_file}\n")
+
+        # ── STEP 3b: ACTUALLY RUN THE TESTS ──────────────────────────────────
+        print("=" * 80)
+        print("STEP 3b: RUNNING PLAYWRIGHT TESTS (browser will open!)")
+        print("=" * 80 + "\n")
+
+        real_results = run_playwright_tests(spec_file, output_path)
+
+        executor_results_json = json.dumps(real_results, indent=2)
+        with open(output_path / "03_executor_results.json", "w", encoding="utf-8") as f:
+            f.write(executor_results_json)
+
+        print(f"\n✓ Real execution results saved")
+        print(f"   Passed: {real_results['passed']} / {real_results['total_tests']}")
+        print(f"   Pass rate: {real_results['pass_rate']}\n")
+
+        # ── STEP 3c: CREATE JIRA BUGS FOR FAILURES ─────────────────
+
+        print("=" * 80)
+        print("STEP 3c: JIRA AGENT - Logging Bugs in Jira")
+        print("=" * 80 + "\n")
+
+        if real_results["failed"] > 0:
+            jira = JiraAgent()
+            print(real_results["failed_tests"])
+
+            for test in real_results["failed_tests"]:
+                clean_error = re.sub(r'\x1B\[[0-?]*[ -/]*[@-~]', '', test["failure_reason"])
+
+                jira.report_test_failure(
+                    test_name=test["test_id"],
+                    error_message=clean_error
+                )
+
+        else:
+            print("✓ No failed tests — Jira bugs not required")
+            jira_results = {"total_bugs_created": 0, "bug_ids": []}
+
+
+        # ── STEP 4: REPORTER AGENT ────────────────────────────────────────────
         print("=" * 80)
         print("STEP 4: REPORTER AGENT - Generating Test Report")
         print("=" * 80 + "\n")
@@ -187,77 +357,34 @@ End with: JIRA_CREATION_COMPLETE""",
             model_context=BufferedChatCompletionContext(buffer_size=6)
         )
 
-        reporter_result = await reporter_agent.run(task=executor_output)
+        reporter_result = await reporter_agent.run(task=executor_results_json)
         report = reporter_result.messages[-1].content
-        print(report)
 
-        # Save report
         with open(output_path / "04_final_report.json", "w", encoding="utf-8") as f:
             f.write(report)
         print("\n✓ Report saved\n")
 
-        # STEP 5: JIRA AGENT - Create Bug Tickets (if there are failures)
-        print("=" * 80)
-        print("STEP 5: JIRA AGENT - Creating Bug Tickets")
-        print("=" * 80 + "\n")
-
-        if "failed" in report.lower():
-            # Configure JIRA MCP
-            jira_server_param = StdioServerParams(
-                command=r"C:\Users\viplo\PycharmProjects\PythonProject1\.venv\Scripts\mcp-atlassian.exe",
-                args=[],
-                read_timeout_second=60,
-                env={
-                    "JIRA_URL": os.getenv("JIRA_URL", ""),
-                    "JIRA_USERNAME": os.getenv("JIRA_USERNAME", ""),
-                    "JIRA_API_TOKEN": os.getenv("JIRA_API_TOKEN", ""),
-                    "JIRA_PROJECTS_FILTER": os.getenv("JIRA_PROJECTS_FILTER", "QA"),
-                    "TOOLSETS": "all",
-                    "LOG_LEVEL": "DEBUG"
-                }
-            )
-
-            jira_workbench = McpWorkbench(jira_server_param)
-
-            # ✅ Initialize JIRA agent ONLY when workbench is ready
-            async with jira_workbench as jira_wb:
-                jira_agent = AssistantAgent(
-                    name="jira_agent",
-                    model_client=model_client,
-                    workbench=jira_wb,
-                    system_message=load_prompt("jira_agent.md"),
-                    model_context=BufferedChatCompletionContext(buffer_size=6)
-                )
-
-                jira_result = await jira_agent.run(task=report)
-                jira_output = jira_result.messages[-1].content
-                print(jira_output)
-
-                # Save JIRA output
-                with open(output_path / "05_jira_tickets.json", "w", encoding="utf-8") as f:
-                    f.write(jira_output)
-                print("\n✓ JIRA tickets created\n")
-        else:
-            print("No failed tests. Skipping JIRA agent.\n")
-
-        # FINAL: Workflow Summary
+        # ── FINAL SUMMARY ─────────────────────────────────────────────────────
         print("=" * 80)
         print("WORKFLOW COMPLETED SUCCESSFULLY")
         print("=" * 80)
         print(f"\nAll outputs saved to: {output_path.absolute()}\n")
         print("Generated Files:")
-        print("  1. 01_planner_scenarios.md    - Test scenarios")
-        print("  2. 02_test_cases.json         - Test cases")
-        print("  3. 03_executor_results.json   - Test execution results")
-        print("  4. 04_final_report.json       - Final test report")
-        print("  5. 05_jira_tickets.json       - JIRA tickets created\n")
+        print("  1. 01_planner_scenarios.md      - Test scenarios")
+        print("  2. 02_test_cases.json           - Test cases")
+        print("  3. 03_generated_spec.ts         - Playwright test script")
+        print("  4. 03_executor_results.json     - REAL execution results")
+        print("  5. 04_final_report.json         - Final test report")
+        print(f"\n  Playwright spec: {spec_file.absolute()}")
+        print(f"  HTML report:     {(output_path / 'playwright-report').absolute()}\n")
 
     except Exception as e:
         print(f"\n❌ Error: {str(e)}")
         import traceback
         traceback.print_exc()
-        return
 
+    # ── PUSH TO GITHUB ─────────────────────────────────────────────────────
+    push_to_github()
 
 if __name__ == "__main__":
     asyncio.run(main())

@@ -1,0 +1,74 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - navigation [ref=e5]:
+      - generic [ref=e7]:
+        - link "Automation Automation Practice":
+          - /url: ""
+          - generic [ref=e8] [cursor=pointer]:
+            - heading "Automation" [level=3] [ref=e9]
+            - paragraph [ref=e10]: Automation Practice
+      - text: 
+      - link "Get Shortlisted by Recruiters - Take QA Skill Assessments on TechSmartHire" [ref=e11] [cursor=pointer]:
+        - /url: https://techsmarthire.com/
+      - list [ref=e12]:
+        - listitem [ref=e13] [cursor=pointer]:
+          - button " HOME" [ref=e14]:
+            - generic [ref=e15]: 
+            - text: HOME
+        - listitem
+        - listitem [ref=e16] [cursor=pointer]:
+          - button " ORDERS" [ref=e17]:
+            - generic [ref=e18]: 
+            - text: ORDERS
+        - listitem [ref=e19] [cursor=pointer]:
+          - button " Cart" [ref=e20]:
+            - generic [ref=e21]: 
+            - text: Cart
+        - listitem [ref=e22] [cursor=pointer]:
+          - button "Sign Out" [ref=e23]:
+            - generic [ref=e24]: 
+            - text: Sign Out
+    - generic [ref=e25]:
+      - heading "Your Orders" [level=1] [ref=e26]
+      - table [ref=e27]:
+        - rowgroup [ref=e28]:
+          - row "Order Id Product Image Name Price Ordered Date View Delete" [ref=e29]:
+            - columnheader "Order Id" [ref=e30]
+            - columnheader "Product Image" [ref=e31]
+            - columnheader "Name" [ref=e32]
+            - columnheader "Price" [ref=e33]
+            - columnheader "Ordered Date" [ref=e34]
+            - columnheader "View" [ref=e35]
+            - columnheader "Delete" [ref=e36]
+        - rowgroup [ref=e37]:
+          - row "69b1d550f86ba51a65fb5896 ADIDAS ORIGINAL $ 11500 Wed Mar 11 View Delete" [ref=e38]:
+            - rowheader "69b1d550f86ba51a65fb5896" [ref=e39]
+            - cell [ref=e40]:
+              - img [ref=e41]
+            - cell "ADIDAS ORIGINAL" [ref=e42]
+            - cell "$ 11500" [ref=e43]
+            - cell "Wed Mar 11" [ref=e44]
+            - cell "View" [ref=e45]:
+              - button "View" [ref=e46] [cursor=pointer]
+            - cell "Delete" [ref=e47]:
+              - button "Delete" [ref=e48] [cursor=pointer]
+          - row "69b1a405f86ba51a65faf26e ADIDAS ORIGINAL $ 11500 Wed Mar 11 View Delete" [ref=e49]:
+            - rowheader "69b1a405f86ba51a65faf26e" [ref=e50]
+            - cell [ref=e51]:
+              - img [ref=e52]
+            - cell "ADIDAS ORIGINAL" [ref=e53]
+            - cell "$ 11500" [ref=e54]
+            - cell "Wed Mar 11" [ref=e55]
+            - cell "View" [ref=e56]:
+              - button "View" [ref=e57] [cursor=pointer]
+            - cell "Delete" [ref=e58]:
+              - button "Delete" [ref=e59] [cursor=pointer]
+      - generic [ref=e60]: "* If orders Will be more than 7 your last order will get deleted"
+    - generic [ref=e62]:
+      - button "Go Back to Shop" [ref=e63] [cursor=pointer]
+      - button "Go Back to Cart" [ref=e64] [cursor=pointer]
+  - generic "Login Successfully" [ref=e66]
+```

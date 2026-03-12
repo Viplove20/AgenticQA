@@ -1,0 +1,99 @@
+{
+ "total_tests": "26",
+ "passed": "11",
+ "failed": "15",
+ "pass_rate": "42.31%",
+ "failed_tests": [
+    {
+      "test_id": "TC_001",
+      "module": "Login",
+      "scenario": "Verify user can access the login page",
+      "failure_reason": "URL mismatch error"
+    },
+    {
+      "test_id": "TC_004",
+      "module": "Login",
+      "scenario": "Verify error message is displayed for invalid credentials",
+      "failure_reason": "Error message not visible"
+    },
+    {
+      "test_id": "TC_005",
+      "module": "Login",
+      "scenario": "Verify login fails when email field is empty",
+      "failure_reason": "Error message not visible"
+    },
+    {
+      "test_id": "TC_006",
+      "module": "Login",
+      "scenario": "Verify login fails when password field is empty",
+      "failure_reason": "Error message not visible"
+    },
+    {
+      "test_id": "TC_008",
+      "module": "Product Search",
+      "scenario": "Verify user can search products using the search field",
+      "failure_reason": "Test timeout exceeded"
+    },
+    {
+      "test_id": "TC_009",
+      "module": "Product Filter",
+      "scenario": "Verify user can use category filters on the product list",
+      "failure_reason": "Test timeout exceeded"
+    },
+    {
+      "test_id": "TC_012",
+      "module": "Shopping Cart",
+      "scenario": "Verify user can add products to the cart",
+      "failure_reason": "Timeout waiting for selector"
+    },
+    {
+      "test_id": "TC_014",
+      "module": "Shopping Cart",
+      "scenario": "Verify cart displays products added from the dashboard",
+      "failure_reason": "Timeout waiting for selector"
+    },
+    {
+      "test_id": "TC_015",
+      "module": "Checkout",
+      "scenario": "Verify user can proceed to checkout",
+      "failure_reason": "Timeout waiting for selector"
+    },
+    {
+      "test_id": "TC_017",
+      "module": "Checkout",
+      "scenario": "Verify user can place an order successfully",
+      "failure_reason": "Timeout waiting for selector"
+    },
+    {
+      "test_id": "TC_020",
+      "module": "Order History",
+      "scenario": "Verify order history displays all placed orders",
+      "failure_reason": "Incorrect order count"
+    },
+    {
+      "test_id": "TC_021",
+      "module": "Logout",
+      "scenario": "Verify user can logout successfully",
+      "failure_reason": "URL mismatch error"
+    },
+    {
+      "test_id": "TC_022",
+      "module": "Product Search",
+      "scenario": "Verify case-sensitive behavior of the search field",
+      "failure_reason": "Test timeout exceeded"
+    },
+    {
+      "test_id": "TC_024",
+      "module": "Country Selector",
+      "scenario": "Verify country suggestions appear for text input in the country field",
+      "failure_reason": "Suggestions not visible"
+    },
+    {
+      "test_id": "TC_025",
+      "module": "Order Confirmation",
+      "scenario": "Verify redirection to order confirmation page after placing an order",
+      "failure_reason": "Timeout waiting for selector"
+    }
+  ],
+ "summary": "11 tests passed, 15 tests failed. Majority of the failures were due to timeout issues and visibility of elements."
+}

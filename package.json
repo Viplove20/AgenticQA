@@ -12,5 +12,21 @@
   "type": "commonjs",
   "dependencies": {
     "@playwright/test": "^1.58.2"
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Viplove20/AgenticQA.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Viplove20/AgenticQA/issues"
+  },
+  "homepage": "https://github.com/Viplove20/AgenticQA#readme"
 }

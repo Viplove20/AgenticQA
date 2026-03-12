@@ -1,95 +1,103 @@
 SCENARIO_ID: SCN-001
 MODULE: Login
-SCENARIO: Verify user can login with valid credentials
+SCENARIO: Verify user can access the login page
 
 SCENARIO_ID: SCN-002
 MODULE: Login
-SCENARIO: Verify error message is displayed for invalid password
+SCENARIO: Verify user can login with valid credentials
 
 SCENARIO_ID: SCN-003
 MODULE: Login
-SCENARIO: Verify login fails when username field is empty
+SCENARIO: Verify user session starts after successful login
 
 SCENARIO_ID: SCN-004
-MODULE: Dashboard
-SCENARIO: Verify user dashboard loads successfully after login
+MODULE: Login
+SCENARIO: Verify error message is displayed for invalid credentials
 
 SCENARIO_ID: SCN-005
-MODULE: Dashboard
-SCENARIO: Verify user can search for products using search bar
+MODULE: Login
+SCENARIO: Verify login fails when email field is empty
 
 SCENARIO_ID: SCN-006
-MODULE: Dashboard
-SCENARIO: Verify user can filter products by price range
+MODULE: Login
+SCENARIO: Verify login fails when password field is empty
 
 SCENARIO_ID: SCN-007
 MODULE: Dashboard
-SCENARIO: Verify user can filter products by category
+SCENARIO: Verify all available products are displayed on the dashboard
 
 SCENARIO_ID: SCN-008
 MODULE: Dashboard
-SCENARIO: Verify user can view product details
+SCENARIO: Verify user can search products using the search field
 
 SCENARIO_ID: SCN-009
 MODULE: Dashboard
-SCENARIO: Verify user can add product to cart
+SCENARIO: Verify user can use category filters on the product list
 
 SCENARIO_ID: SCN-010
-MODULE: Cart
-SCENARIO: Verify that cart shows items added by user
+MODULE: Dashboard
+SCENARIO: Verify home navigation redirects user to dashboard page
 
 SCENARIO_ID: SCN-011
-MODULE: Cart
-SCENARIO: Verify user can remove an item from the cart
+MODULE: Dashboard
+SCENARIO: Verify user can view product details from the dashboard
 
 SCENARIO_ID: SCN-012
-MODULE: Cart
-SCENARIO: Verify the total price is correctly calculated in the cart
+MODULE: Dashboard
+SCENARIO: Verify user can add products to the cart
 
 SCENARIO_ID: SCN-013
 MODULE: Cart
-SCENARIO: Verify user can proceed to checkout from the cart
+SCENARIO: Verify user can access the cart page
 
 SCENARIO_ID: SCN-014
-MODULE: Checkout
-SCENARIO: Verify checkout page is displayed when proceeding from cart
+MODULE: Cart
+SCENARIO: Verify cart displays products added from the dashboard
 
 SCENARIO_ID: SCN-015
-MODULE: Checkout
-SCENARIO: Verify error message is displayed for invalid billing address fields
+MODULE: Cart
+SCENARIO: Verify user can proceed to checkout
 
 SCENARIO_ID: SCN-016
 MODULE: Checkout
-SCENARIO: Verify user can successfully complete a payment
+SCENARIO: Verify user can enter country for delivery during checkout
 
 SCENARIO_ID: SCN-017
-MODULE: Order Summary
-SCENARIO: Verify order summary displays correct order details after payment
+MODULE: Checkout
+SCENARIO: Verify user can place an order successfully
 
 SCENARIO_ID: SCN-018
-MODULE: Order History
-SCENARIO: Verify user can view past orders in order history
+MODULE: Order Summary
+SCENARIO: Verify order summary page displays order details
 
 SCENARIO_ID: SCN-019
 MODULE: Order History
-SCENARIO: Verify user can filter past orders by status
+SCENARIO: Verify user can access order history
 
 SCENARIO_ID: SCN-020
 MODULE: Order History
-SCENARIO: Verify error message is displayed when there are no orders to show
+SCENARIO: Verify order history displays all placed orders
 
 SCENARIO_ID: SCN-021
-MODULE: Cart
-SCENARIO: Verify empty cart state shows correct message and icon
+MODULE: Logout
+SCENARIO: Verify user can logout successfully
 
 SCENARIO_ID: SCN-022
 MODULE: Dashboard
-SCENARIO: Verify pagination works correctly for product listings
+SCENARIO: Verify case-sensitive behavior of the search field
 
 SCENARIO_ID: SCN-023
-MODULE: Checkout
-SCENARIO: Verify continue to payment button is disabled with invalid form
+MODULE: Dashboard
+SCENARIO: Verify product details page URL contains correct path
 
 SCENARIO_ID: SCN-024
 MODULE: Checkout
-SCENARIO: Verify user is redirected back to cart when clicking "Back to Cart"
+SCENARIO: Verify country suggestions appear for text input in the country field
+
+SCENARIO_ID: SCN-025
+MODULE: Checkout
+SCENARIO: Verify redirection to order confirmation page after placing an order
+
+SCENARIO_ID: SCN-026
+MODULE: Order Summary
+SCENARIO: Verify confirmation message appears on order summary page upon successful order placement
