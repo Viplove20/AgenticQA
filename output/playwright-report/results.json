@@ -66,7 +66,75 @@
       "line": 0,
       "specs": [
         {
-          "title": "TC_001 - Verify user can access the login page",
+          "title": "TC_001 - Verify login page is accessible from the login URL",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2098,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-03-15T21:36:13.209Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b30030f2041d396c518a-6fd7098f66759ab62058",
+          "file": "generated_tests.spec.ts",
+          "line": 11,
+          "column": 5
+        },
+        {
+          "title": "TC_002 - Verify user can login with valid credentials and be redirected to the Dashboard page",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2651,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-03-15T21:36:15.550Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b30030f2041d396c518a-0f2c67b7cd85d78c592a",
+          "file": "generated_tests.spec.ts",
+          "line": 16,
+          "column": 5
+        },
+        {
+          "title": "TC_003 - Verify user login fails with an invalid password",
           "ok": false,
           "tags": [],
           "tests": [
@@ -81,129 +149,61 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "failed",
-                  "duration": 5723,
+                  "duration": 11063,
                   "error": {
-                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected: \u001b[32m\"https://rahulshettyacademy.com/client/auth/login\"\u001b[39m\nReceived: \u001b[31m\"https://rahulshettyacademy.com/client/\u001b[7m#/\u001b[27mauth/login\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"https://rahulshettyacademy.com/client/#/auth/login\"\u001b[22m\n",
-                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected: \u001b[32m\"https://rahulshettyacademy.com/client/auth/login\"\u001b[39m\nReceived: \u001b[31m\"https://rahulshettyacademy.com/client/\u001b[7m#/\u001b[27mauth/login\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"https://rahulshettyacademy.com/client/#/auth/login\"\u001b[22m\n\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:13:22",
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.error')\nExpected: visible\nTimeout: 8000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 8000ms\u001b[22m\n\u001b[2m  - waiting for locator('.error')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.error')\nExpected: visible\nTimeout: 8000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 8000ms\u001b[22m\n\u001b[2m  - waiting for locator('.error')\u001b[22m\n\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:26:40",
                     "location": {
                       "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
-                      "column": 22,
-                      "line": 13
+                      "column": 40,
+                      "line": 26
                     },
-                    "snippet": "\u001b[0m \u001b[90m 11 |\u001b[39m test(\u001b[32m'TC_001 - Verify user can access the login page'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m 12 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'https://rahulshettyacademy.com/client/auth/login'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 13 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveURL(\u001b[32m'https://rahulshettyacademy.com/client/auth/login'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 14 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 15 |\u001b[39m\n \u001b[90m 16 |\u001b[39m test(\u001b[32m'TC_002 - Verify user can login with valid credentials'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                    "snippet": "\u001b[0m \u001b[90m 24 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#userPassword'\u001b[39m)\u001b[33m.\u001b[39mfill(\u001b[32m'invalid_password'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 25 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#login'\u001b[39m)\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 26 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'.error'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m8000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 27 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 28 |\u001b[39m\n \u001b[90m 29 |\u001b[39m test(\u001b[32m'TC_004 - Verify login attempt without entering email displays an error message'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
                   },
                   "errors": [
                     {
                       "location": {
                         "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
-                        "column": 22,
-                        "line": 13
+                        "column": 40,
+                        "line": 26
                       },
-                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected: \u001b[32m\"https://rahulshettyacademy.com/client/auth/login\"\u001b[39m\nReceived: \u001b[31m\"https://rahulshettyacademy.com/client/\u001b[7m#/\u001b[27mauth/login\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"https://rahulshettyacademy.com/client/#/auth/login\"\u001b[22m\n\n\n  11 | test('TC_001 - Verify user can access the login page', async ({ page }) => {\n  12 |   await page.goto('https://rahulshettyacademy.com/client/auth/login');\n> 13 |   await expect(page).toHaveURL('https://rahulshettyacademy.com/client/auth/login');\n     |                      ^\n  14 | });\n  15 |\n  16 | test('TC_002 - Verify user can login with valid credentials', async ({ page }) => {\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:13:22"
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.error')\nExpected: visible\nTimeout: 8000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 8000ms\u001b[22m\n\u001b[2m  - waiting for locator('.error')\u001b[22m\n\n\n  24 |   await page.locator('#userPassword').fill('invalid_password');\n  25 |   await page.locator('#login').click();\n> 26 |   await expect(page.locator('.error')).toBeVisible({ timeout: 8000 });\n     |                                        ^\n  27 | });\n  28 |\n  29 | test('TC_004 - Verify login attempt without entering email displays an error message', async ({ page }) => {\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:26:40"
                     }
                   ],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-03-12T21:20:54.075Z",
+                  "startTime": "2026-03-15T21:36:18.215Z",
                   "annotations": [],
                   "attachments": [
                     {
                       "name": "screenshot",
                       "contentType": "image/png",
-                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-001---V-b2108-r-can-access-the-login-page\\test-failed-1.png"
+                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-003---V-ed021-ls-with-an-invalid-password\\test-failed-1.png"
                     },
                     {
                       "name": "error-context",
                       "contentType": "text/markdown",
-                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-001---V-b2108-r-can-access-the-login-page\\error-context.md"
+                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-003---V-ed021-ls-with-an-invalid-password\\error-context.md"
                     }
                   ],
                   "errorLocation": {
                     "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
-                    "column": 22,
-                    "line": 13
+                    "column": 40,
+                    "line": 26
                   }
                 }
               ],
               "status": "unexpected"
             }
           ],
-          "id": "b30030f2041d396c518a-4f965f81fb3f699503d1",
-          "file": "generated_tests.spec.ts",
-          "line": 11,
-          "column": 5
-        },
-        {
-          "title": "TC_002 - Verify user can login with valid credentials",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 1,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 1057,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-03-12T21:21:02.084Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "b30030f2041d396c518a-22ae3fd7fec004616a7c",
-          "file": "generated_tests.spec.ts",
-          "line": 16,
-          "column": 5
-        },
-        {
-          "title": "TC_003 - Verify user session starts after successful login",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 1,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 2011,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-03-12T21:21:03.472Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "b30030f2041d396c518a-6016dc5a7daf03e3ced8",
+          "id": "b30030f2041d396c518a-bdfbf813d3a824032eaf",
           "file": "generated_tests.spec.ts",
           "line": 21,
           "column": 5
         },
         {
-          "title": "TC_004 - Verify error message is displayed for invalid credentials",
+          "title": "TC_004 - Verify login attempt without entering email displays an error message",
           "ok": false,
           "tags": [],
           "tests": [
@@ -218,61 +218,95 @@
                   "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "failed",
-                  "duration": 8809,
+                  "duration": 9336,
                   "error": {
                     "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.error')\nExpected: visible\nTimeout: 8000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 8000ms\u001b[22m\n\u001b[2m  - waiting for locator('.error')\u001b[22m\n",
-                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.error')\nExpected: visible\nTimeout: 8000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 8000ms\u001b[22m\n\u001b[2m  - waiting for locator('.error')\u001b[22m\n\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:31:40",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.error')\nExpected: visible\nTimeout: 8000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 8000ms\u001b[22m\n\u001b[2m  - waiting for locator('.error')\u001b[22m\n\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:33:40",
                     "location": {
                       "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
                       "column": 40,
-                      "line": 31
+                      "line": 33
                     },
-                    "snippet": "\u001b[0m \u001b[90m 29 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#userPassword'\u001b[39m)\u001b[33m.\u001b[39mfill(\u001b[32m'InvalidPassword'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 30 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#login'\u001b[39m)\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 31 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'.error'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m8000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 32 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 33 |\u001b[39m\n \u001b[90m 34 |\u001b[39m test(\u001b[32m'TC_005 - Verify login fails when email field is empty'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                    "snippet": "\u001b[0m \u001b[90m 31 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#userPassword'\u001b[39m)\u001b[33m.\u001b[39mfill(process\u001b[33m.\u001b[39menv\u001b[33m.\u001b[39m\u001b[33mLOGIN_PASSWORD\u001b[39m \u001b[33m?\u001b[39m\u001b[33m?\u001b[39m \u001b[32m''\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#login'\u001b[39m)\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 33 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'.error'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m8000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 34 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 35 |\u001b[39m\n \u001b[90m 36 |\u001b[39m test(\u001b[32m'TC_005 - Verify dashboard displays a list of all available products'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
                   },
                   "errors": [
                     {
                       "location": {
                         "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
                         "column": 40,
-                        "line": 31
+                        "line": 33
                       },
-                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.error')\nExpected: visible\nTimeout: 8000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 8000ms\u001b[22m\n\u001b[2m  - waiting for locator('.error')\u001b[22m\n\n\n  29 |   await page.locator('#userPassword').fill('InvalidPassword');\n  30 |   await page.locator('#login').click();\n> 31 |   await expect(page.locator('.error')).toBeVisible({ timeout: 8000 });\n     |                                        ^\n  32 | });\n  33 |\n  34 | test('TC_005 - Verify login fails when email field is empty', async ({ page }) => {\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:31:40"
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.error')\nExpected: visible\nTimeout: 8000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 8000ms\u001b[22m\n\u001b[2m  - waiting for locator('.error')\u001b[22m\n\n\n  31 |   await page.locator('#userPassword').fill(process.env.LOGIN_PASSWORD ?? '');\n  32 |   await page.locator('#login').click();\n> 33 |   await expect(page.locator('.error')).toBeVisible({ timeout: 8000 });\n     |                                        ^\n  34 | });\n  35 |\n  36 | test('TC_005 - Verify dashboard displays a list of all available products', async ({ page }) => {\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:33:40"
                     }
                   ],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-03-12T21:21:05.501Z",
+                  "startTime": "2026-03-15T21:36:33.171Z",
                   "annotations": [],
                   "attachments": [
                     {
                       "name": "screenshot",
                       "contentType": "image/png",
-                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-004---V-b640a-yed-for-invalid-credentials\\test-failed-1.png"
+                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-004---V-8f762-l-displays-an-error-message\\test-failed-1.png"
                     },
                     {
                       "name": "error-context",
                       "contentType": "text/markdown",
-                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-004---V-b640a-yed-for-invalid-credentials\\error-context.md"
+                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-004---V-8f762-l-displays-an-error-message\\error-context.md"
                     }
                   ],
                   "errorLocation": {
                     "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
                     "column": 40,
-                    "line": 31
+                    "line": 33
                   }
                 }
               ],
               "status": "unexpected"
             }
           ],
-          "id": "b30030f2041d396c518a-8e2aab54dd00c9f54c60",
+          "id": "b30030f2041d396c518a-52500e8f72310495ec02",
           "file": "generated_tests.spec.ts",
-          "line": 26,
+          "line": 29,
           "column": 5
         },
         {
-          "title": "TC_005 - Verify login fails when email field is empty",
+          "title": "TC_005 - Verify dashboard displays a list of all available products",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1283,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-03-15T21:36:46.442Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b30030f2041d396c518a-8a52ff697aeb34a5f447",
+          "file": "generated_tests.spec.ts",
+          "line": 36,
+          "column": 5
+        },
+        {
+          "title": "TC_006 - Verify product search returns the correct product for exact case-sensitive names",
           "ok": false,
           "tags": [],
           "tests": [
@@ -286,62 +320,54 @@
                 {
                   "workerIndex": 2,
                   "parallelIndex": 0,
-                  "status": "failed",
-                  "duration": 10269,
+                  "status": "timedOut",
+                  "duration": 30244,
                   "error": {
-                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.error')\nExpected: visible\nTimeout: 8000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 8000ms\u001b[22m\n\u001b[2m  - waiting for locator('.error')\u001b[22m\n",
-                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.error')\nExpected: visible\nTimeout: 8000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 8000ms\u001b[22m\n\u001b[2m  - waiting for locator('.error')\u001b[22m\n\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:38:40",
-                    "location": {
-                      "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
-                      "column": 40,
-                      "line": 38
-                    },
-                    "snippet": "\u001b[0m \u001b[90m 36 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#userPassword'\u001b[39m)\u001b[33m.\u001b[39mfill(\u001b[32m'ValidPassword'\u001b[39m)\u001b[33m;\u001b[39m \u001b[90m// Assuming a valid password\u001b[39m\n \u001b[90m 37 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#login'\u001b[39m)\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 38 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'.error'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m8000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 39 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 40 |\u001b[39m\n \u001b[90m 41 |\u001b[39m test(\u001b[32m'TC_006 - Verify login fails when password field is empty'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                    "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                    "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
                   },
                   "errors": [
                     {
+                      "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                    },
+                    {
                       "location": {
                         "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
-                        "column": 40,
-                        "line": 38
+                        "column": 72,
+                        "line": 46
                       },
-                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.error')\nExpected: visible\nTimeout: 8000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 8000ms\u001b[22m\n\u001b[2m  - waiting for locator('.error')\u001b[22m\n\n\n  36 |   await page.locator('#userPassword').fill('ValidPassword'); // Assuming a valid password\n  37 |   await page.locator('#login').click();\n> 38 |   await expect(page.locator('.error')).toBeVisible({ timeout: 8000 });\n     |                                        ^\n  39 | });\n  40 |\n  41 | test('TC_006 - Verify login fails when password field is empty', async ({ page }) => {\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:38:40"
+                      "message": "Error: locator.fill: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.card-title-filter input[placeholder=\"search\"]')\u001b[22m\n\n\n  44 |   await login(page);\n  45 |   await page.waitForSelector('.card-body', { timeout: 10000 });\n> 46 |   await page.locator('.card-title-filter input[placeholder=\"search\"]').fill('Exact Product Name');\n     |                                                                        ^\n  47 |   await page.keyboard.press('Enter');\n  48 |   const searchResults = await page.locator('.card-body h5').filter({ hasText: 'Exact Product Name' }).count();\n  49 |   expect(searchResults).toBeGreaterThan(0);\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:46:72"
                     }
                   ],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-03-12T21:21:16.244Z",
+                  "startTime": "2026-03-15T21:36:48.019Z",
                   "annotations": [],
                   "attachments": [
                     {
                       "name": "screenshot",
                       "contentType": "image/png",
-                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-005---V-01121-s-when-email-field-is-empty\\test-failed-1.png"
+                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-006---V-35146--exact-case-sensitive-names\\test-failed-1.png"
                     },
                     {
                       "name": "error-context",
                       "contentType": "text/markdown",
-                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-005---V-01121-s-when-email-field-is-empty\\error-context.md"
+                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-006---V-35146--exact-case-sensitive-names\\error-context.md"
                     }
-                  ],
-                  "errorLocation": {
-                    "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
-                    "column": 40,
-                    "line": 38
-                  }
+                  ]
                 }
               ],
               "status": "unexpected"
             }
           ],
-          "id": "b30030f2041d396c518a-5daeb3ad67ed26fad889",
+          "id": "b30030f2041d396c518a-7ec42e19066ad5775a8d",
           "file": "generated_tests.spec.ts",
-          "line": 34,
+          "line": 43,
           "column": 5
         },
         {
-          "title": "TC_006 - Verify login fails when password field is empty",
+          "title": "TC_007 - Verify user can filter products using category checkboxes",
           "ok": false,
           "tags": [],
           "tests": [
@@ -355,96 +381,54 @@
                 {
                   "workerIndex": 3,
                   "parallelIndex": 0,
-                  "status": "failed",
-                  "duration": 8808,
+                  "status": "timedOut",
+                  "duration": 30379,
                   "error": {
-                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.error')\nExpected: visible\nTimeout: 8000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 8000ms\u001b[22m\n\u001b[2m  - waiting for locator('.error')\u001b[22m\n",
-                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.error')\nExpected: visible\nTimeout: 8000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 8000ms\u001b[22m\n\u001b[2m  - waiting for locator('.error')\u001b[22m\n\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:45:40",
-                    "location": {
-                      "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
-                      "column": 40,
-                      "line": 45
-                    },
-                    "snippet": "\u001b[0m \u001b[90m 43 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#userEmail'\u001b[39m)\u001b[33m.\u001b[39mfill(\u001b[32m'valid@example.com'\u001b[39m)\u001b[33m;\u001b[39m \u001b[90m// Assuming a valid email\u001b[39m\n \u001b[90m 44 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#login'\u001b[39m)\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 45 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'.error'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m8000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 46 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 47 |\u001b[39m\n \u001b[90m 48 |\u001b[39m test(\u001b[32m'TC_007 - Verify all available products are displayed on the dashboard'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                    "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                    "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
                   },
                   "errors": [
                     {
+                      "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                    },
+                    {
                       "location": {
                         "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
-                        "column": 40,
-                        "line": 45
+                        "column": 56,
+                        "line": 55
                       },
-                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.error')\nExpected: visible\nTimeout: 8000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 8000ms\u001b[22m\n\u001b[2m  - waiting for locator('.error')\u001b[22m\n\n\n  43 |   await page.locator('#userEmail').fill('valid@example.com'); // Assuming a valid email\n  44 |   await page.locator('#login').click();\n> 45 |   await expect(page.locator('.error')).toBeVisible({ timeout: 8000 });\n     |                                        ^\n  46 | });\n  47 |\n  48 | test('TC_007 - Verify all available products are displayed on the dashboard', async ({ page }) => {\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:45:40"
+                      "message": "Error: locator.check: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[type=\"checkbox\"]').first()\u001b[22m\n\u001b[2m    - locator resolved to <input id=\"check\" type=\"checkbox\" _ngcontent-yuu-c38=\"\"/>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    52 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not visible\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n\n  53 |   await login(page);\n  54 |   await page.waitForSelector('.card-body', { timeout: 10000 });\n> 55 |   await page.locator('input[type=\"checkbox\"]').first().check();\n     |                                                        ^\n  56 |   await page.waitForTimeout(1500);\n  57 |   const filteredProductCount = await page.locator('.card-body').count();\n  58 |   expect(filteredProductCount).toBeGreaterThan(0);\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:55:56"
                     }
                   ],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-03-12T21:21:28.899Z",
+                  "startTime": "2026-03-15T21:37:21.363Z",
                   "annotations": [],
                   "attachments": [
                     {
                       "name": "screenshot",
                       "contentType": "image/png",
-                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-006---V-2ed6c-hen-password-field-is-empty\\test-failed-1.png"
+                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-007---V-9f9f9-s-using-category-checkboxes\\test-failed-1.png"
                     },
                     {
                       "name": "error-context",
                       "contentType": "text/markdown",
-                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-006---V-2ed6c-hen-password-field-is-empty\\error-context.md"
+                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-007---V-9f9f9-s-using-category-checkboxes\\error-context.md"
                     }
-                  ],
-                  "errorLocation": {
-                    "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
-                    "column": 40,
-                    "line": 45
-                  }
+                  ]
                 }
               ],
               "status": "unexpected"
             }
           ],
-          "id": "b30030f2041d396c518a-036657ae51c50063e70a",
+          "id": "b30030f2041d396c518a-8879966f9617647ee4aa",
           "file": "generated_tests.spec.ts",
-          "line": 41,
+          "line": 52,
           "column": 5
         },
         {
-          "title": "TC_007 - Verify all available products are displayed on the dashboard",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 4,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 2044,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-03-12T21:21:39.974Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "b30030f2041d396c518a-0dc6b2883480c6863f1f",
-          "file": "generated_tests.spec.ts",
-          "line": 48,
-          "column": 5
-        },
-        {
-          "title": "TC_008 - Verify user can search products using the search field",
+          "title": "TC_008 - Verify user is redirected to the product details page upon clicking the View button",
           "ok": false,
           "tags": [],
           "tests": [
@@ -458,54 +442,130 @@
                 {
                   "workerIndex": 4,
                   "parallelIndex": 0,
-                  "status": "timedOut",
-                  "duration": 30134,
+                  "status": "failed",
+                  "duration": 7336,
                   "error": {
-                    "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
-                    "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/.*\\/product\\/details/\u001b[39m\nReceived string:  \u001b[31m\"https://rahulshettyacademy.com/client/#/dashboard/product-details/6960eae1c941646b7a8b3ed3\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"https://rahulshettyacademy.com/client/#/dashboard/product-details/6960eae1c941646b7a8b3ed3\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/.*\\/product\\/details/\u001b[39m\nReceived string:  \u001b[31m\"https://rahulshettyacademy.com/client/#/dashboard/product-details/6960eae1c941646b7a8b3ed3\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"https://rahulshettyacademy.com/client/#/dashboard/product-details/6960eae1c941646b7a8b3ed3\"\u001b[22m\n\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:65:22",
+                    "location": {
+                      "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
+                      "column": 22,
+                      "line": 65
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 63 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'.card-body'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 64 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'.card-body button:has-text(\"View\")'\u001b[39m)\u001b[33m.\u001b[39mfirst()\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 65 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveURL(\u001b[35m/.*\\/product\\/details/\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 66 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 67 |\u001b[39m\n \u001b[90m 68 |\u001b[39m test(\u001b[32m'TC_009 - Verify user can add a product to cart from the dashboard'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
                   },
                   "errors": [
                     {
-                      "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
-                    },
-                    {
                       "location": {
                         "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
-                        "column": 80,
-                        "line": 57
+                        "column": 22,
+                        "line": 65
                       },
-                      "message": "Error: locator.fill: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.card-title-filter input[placeholder=\"search\"]').first()\u001b[22m\n\n\n  55 |   await login(page);\n  56 |   await page.waitForSelector('.card-body', { timeout: 10000 });\n> 57 |   await page.locator('.card-title-filter input[placeholder=\"search\"]').first().fill('Product Name');\n     |                                                                                ^\n  58 |   await page.keyboard.press('Enter');\n  59 |   expect(await page.locator('.card-body').count()).toBeGreaterThan(0); // Assume search should return results\n  60 | });\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:57:80"
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/.*\\/product\\/details/\u001b[39m\nReceived string:  \u001b[31m\"https://rahulshettyacademy.com/client/#/dashboard/product-details/6960eae1c941646b7a8b3ed3\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"https://rahulshettyacademy.com/client/#/dashboard/product-details/6960eae1c941646b7a8b3ed3\"\u001b[22m\n\n\n  63 |   await page.waitForSelector('.card-body', { timeout: 10000 });\n  64 |   await page.locator('.card-body button:has-text(\"View\")').first().click();\n> 65 |   await expect(page).toHaveURL(/.*\\/product\\/details/);\n     |                      ^\n  66 | });\n  67 |\n  68 | test('TC_009 - Verify user can add a product to cart from the dashboard', async ({ page }) => {\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:65:22"
                     }
                   ],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-03-12T21:21:42.311Z",
+                  "startTime": "2026-03-15T21:37:55.107Z",
                   "annotations": [],
                   "attachments": [
                     {
                       "name": "screenshot",
                       "contentType": "image/png",
-                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-008---V-a3113-ucts-using-the-search-field\\test-failed-1.png"
+                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-008---V-e3be9-on-clicking-the-View-button\\test-failed-1.png"
                     },
                     {
                       "name": "error-context",
                       "contentType": "text/markdown",
-                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-008---V-a3113-ucts-using-the-search-field\\error-context.md"
+                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-008---V-e3be9-on-clicking-the-View-button\\error-context.md"
                     }
-                  ]
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
+                    "column": 22,
+                    "line": 65
+                  }
                 }
               ],
               "status": "unexpected"
             }
           ],
-          "id": "b30030f2041d396c518a-5ceb3cd67216789f8018",
+          "id": "b30030f2041d396c518a-b2618cd8b9663a38dd26",
           "file": "generated_tests.spec.ts",
-          "line": 54,
+          "line": 61,
           "column": 5
         },
         {
-          "title": "TC_009 - Verify user can use category filters on the product list",
+          "title": "TC_009 - Verify user can add a product to cart from the dashboard",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4164,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-03-15T21:38:05.648Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b30030f2041d396c518a-753caa1a24579af29b26",
+          "file": "generated_tests.spec.ts",
+          "line": 68,
+          "column": 5
+        },
+        {
+          "title": "TC_010 - Verify cart page is accessible from cart navigation after adding products",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4605,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-03-15T21:38:10.100Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b30030f2041d396c518a-e5ec642c59a432c992d1",
+          "file": "generated_tests.spec.ts",
+          "line": 76,
+          "column": 5
+        },
+        {
+          "title": "TC_011 - Verify all products added from the dashboard are displayed in the cart",
           "ok": false,
           "tags": [],
           "tests": [
@@ -519,225 +579,62 @@
                 {
                   "workerIndex": 5,
                   "parallelIndex": 0,
-                  "status": "timedOut",
-                  "duration": 30157,
-                  "error": {
-                    "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
-                    "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
-                  },
-                  "errors": [
-                    {
-                      "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
-                    },
-                    {
-                      "location": {
-                        "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
-                        "column": 67,
-                        "line": 65
-                      },
-                      "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.checklist input[type=\"checkbox\"]').first()\u001b[22m\n\n\n  63 |   await login(page);\n  64 |   await page.waitForSelector('.card-body', { timeout: 10000 });\n> 65 |   await page.locator('.checklist input[type=\"checkbox\"]').first().click();\n     |                                                                   ^\n  66 |   await page.waitForTimeout(1500);\n  67 |   expect(await page.locator('.card-body').count()).toBeGreaterThan(0); // Assume filter changes results\n  68 | });\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:65:67"
-                    }
-                  ],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-03-12T21:22:14.461Z",
-                  "annotations": [],
-                  "attachments": [
-                    {
-                      "name": "screenshot",
-                      "contentType": "image/png",
-                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-009---V-96964-filters-on-the-product-list\\test-failed-1.png"
-                    },
-                    {
-                      "name": "error-context",
-                      "contentType": "text/markdown",
-                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-009---V-96964-filters-on-the-product-list\\error-context.md"
-                    }
-                  ]
-                }
-              ],
-              "status": "unexpected"
-            }
-          ],
-          "id": "b30030f2041d396c518a-b81e628a4661fecfa21d",
-          "file": "generated_tests.spec.ts",
-          "line": 62,
-          "column": 5
-        },
-        {
-          "title": "TC_010 - Verify home navigation redirects user to dashboard page",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 6,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 996,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-03-12T21:22:46.901Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "b30030f2041d396c518a-042eff74042c80276c64",
-          "file": "generated_tests.spec.ts",
-          "line": 70,
-          "column": 5
-        },
-        {
-          "title": "TC_011 - Verify user can view product details from the dashboard",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 6,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 1424,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-03-12T21:22:48.158Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "b30030f2041d396c518a-db58aae5da9f5ab6ecf9",
-          "file": "generated_tests.spec.ts",
-          "line": 76,
-          "column": 5
-        },
-        {
-          "title": "TC_012 - Verify user can add products to the cart",
-          "ok": false,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 6,
-                  "parallelIndex": 0,
                   "status": "failed",
-                  "duration": 12875,
+                  "duration": 15036,
                   "error": {
                     "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tbody tr') to be visible\u001b[22m\n",
-                    "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tbody tr') to be visible\u001b[22m\n\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:89:14",
+                    "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tbody tr') to be visible\u001b[22m\n\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:91:14",
                     "location": {
                       "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
                       "column": 14,
-                      "line": 89
+                      "line": 91
                     },
-                    "snippet": "\u001b[0m \u001b[90m 87 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m1500\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 88 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'[routerlink*=\"cart\"]'\u001b[39m)\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 89 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'tbody tr'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 90 |\u001b[39m   expect(\u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'tbody tr'\u001b[39m)\u001b[33m.\u001b[39mcount())\u001b[33m.\u001b[39mtoBeGreaterThan(\u001b[35m0\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 91 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 92 |\u001b[39m\u001b[0m"
+                    "snippet": "\u001b[0m \u001b[90m 89 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m1500\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 90 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'[routerlink*=\"cart\"]'\u001b[39m)\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 91 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'tbody tr'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 92 |\u001b[39m   \u001b[36mconst\u001b[39m cartProductCount \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'tbody tr'\u001b[39m)\u001b[33m.\u001b[39mcount()\u001b[33m;\u001b[39m\n \u001b[90m 93 |\u001b[39m   expect(cartProductCount)\u001b[33m.\u001b[39mtoBeGreaterThan(\u001b[35m0\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 94 |\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m"
                   },
                   "errors": [
                     {
                       "location": {
                         "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
                         "column": 14,
-                        "line": 89
+                        "line": 91
                       },
-                      "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tbody tr') to be visible\u001b[22m\n\n\n  87 |   await page.waitForTimeout(1500);\n  88 |   await page.locator('[routerlink*=\"cart\"]').click();\n> 89 |   await page.waitForSelector('tbody tr', { timeout: 10000 });\n     |              ^\n  90 |   expect(await page.locator('tbody tr').count()).toBeGreaterThan(0);\n  91 | });\n  92 |\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:89:14"
+                      "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tbody tr') to be visible\u001b[22m\n\n\n  89 |   await page.waitForTimeout(1500);\n  90 |   await page.locator('[routerlink*=\"cart\"]').click();\n> 91 |   await page.waitForSelector('tbody tr', { timeout: 10000 });\n     |              ^\n  92 |   const cartProductCount = await page.locator('tbody tr').count();\n  93 |   expect(cartProductCount).toBeGreaterThan(0);\n  94 | });\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:91:14"
                     }
                   ],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-03-12T21:22:49.600Z",
+                  "startTime": "2026-03-15T21:38:14.726Z",
                   "annotations": [],
                   "attachments": [
                     {
                       "name": "screenshot",
                       "contentType": "image/png",
-                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-012---V-4306d-an-add-products-to-the-cart\\test-failed-1.png"
+                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-011---V-887a8-d-are-displayed-in-the-cart\\test-failed-1.png"
                     },
                     {
                       "name": "error-context",
                       "contentType": "text/markdown",
-                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-012---V-4306d-an-add-products-to-the-cart\\error-context.md"
+                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-011---V-887a8-d-are-displayed-in-the-cart\\error-context.md"
                     }
                   ],
                   "errorLocation": {
                     "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
                     "column": 14,
-                    "line": 89
+                    "line": 91
                   }
                 }
               ],
               "status": "unexpected"
             }
           ],
-          "id": "b30030f2041d396c518a-f16a882354770b763bbf",
+          "id": "b30030f2041d396c518a-a327dc1457e060fcddd6",
           "file": "generated_tests.spec.ts",
-          "line": 83,
+          "line": 85,
           "column": 5
         },
         {
-          "title": "TC_013 - Verify user can access the cart page",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 7,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 990,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-03-12T21:23:04.436Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "b30030f2041d396c518a-6c8593c09fea0f70d792",
-          "file": "generated_tests.spec.ts",
-          "line": 93,
-          "column": 5
-        },
-        {
-          "title": "TC_014 - Verify cart displays products added from the dashboard",
+          "title": "TC_012 - Verify the user can proceed to checkout using the Buy Now button",
           "ok": false,
           "tags": [],
           "tests": [
@@ -749,10 +646,10 @@
               "projectName": "",
               "results": [
                 {
-                  "workerIndex": 7,
+                  "workerIndex": 6,
                   "parallelIndex": 0,
                   "status": "failed",
-                  "duration": 11244,
+                  "duration": 14360,
                   "error": {
                     "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tbody tr') to be visible\u001b[22m\n",
                     "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tbody tr') to be visible\u001b[22m\n\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:102:14",
@@ -761,7 +658,7 @@
                       "column": 14,
                       "line": 102
                     },
-                    "snippet": "\u001b[0m \u001b[90m 100 |\u001b[39m   \u001b[36mawait\u001b[39m login(page)\u001b[33m;\u001b[39m\n \u001b[90m 101 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'https://rahulshettyacademy.com/client/#/dashboard/cart'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 102 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'tbody tr'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 103 |\u001b[39m   expect(\u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'tbody tr'\u001b[39m)\u001b[33m.\u001b[39mcount())\u001b[33m.\u001b[39mtoBeGreaterThan(\u001b[35m0\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 104 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 105 |\u001b[39m\u001b[0m"
+                    "snippet": "\u001b[0m \u001b[90m 100 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m2000\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 101 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'[routerlink*=\"cart\"]'\u001b[39m)\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 102 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'tbody tr'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 103 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'button:has-text(\"Buy Now\")'\u001b[39m)\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m 104 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveURL(\u001b[32m'https://rahulshettyacademy.com/client/#/dashboard/order'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 105 |\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m"
                   },
                   "errors": [
                     {
@@ -770,24 +667,24 @@
                         "column": 14,
                         "line": 102
                       },
-                      "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tbody tr') to be visible\u001b[22m\n\n\n  100 |   await login(page);\n  101 |   await page.goto('https://rahulshettyacademy.com/client/#/dashboard/cart');\n> 102 |   await page.waitForSelector('tbody tr', { timeout: 10000 });\n      |              ^\n  103 |   expect(await page.locator('tbody tr').count()).toBeGreaterThan(0);\n  104 | });\n  105 |\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:102:14"
+                      "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tbody tr') to be visible\u001b[22m\n\n\n  100 |   await page.waitForTimeout(2000);\n  101 |   await page.locator('[routerlink*=\"cart\"]').click();\n> 102 |   await page.waitForSelector('tbody tr', { timeout: 10000 });\n      |              ^\n  103 |   await page.locator('button:has-text(\"Buy Now\")').click();\n  104 |   await expect(page).toHaveURL('https://rahulshettyacademy.com/client/#/dashboard/order');\n  105 | });\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:102:14"
                     }
                   ],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-03-12T21:23:05.642Z",
+                  "startTime": "2026-03-15T21:40:55.714Z",
                   "annotations": [],
                   "attachments": [
                     {
                       "name": "screenshot",
                       "contentType": "image/png",
-                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-014---V-30eed-ts-added-from-the-dashboard\\test-failed-1.png"
+                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-012---V-abccd-ut-using-the-Buy-Now-button\\test-failed-1.png"
                     },
                     {
                       "name": "error-context",
                       "contentType": "text/markdown",
-                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-014---V-30eed-ts-added-from-the-dashboard\\error-context.md"
+                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-012---V-abccd-ut-using-the-Buy-Now-button\\error-context.md"
                     }
                   ],
                   "errorLocation": {
@@ -800,13 +697,82 @@
               "status": "unexpected"
             }
           ],
-          "id": "b30030f2041d396c518a-80567553ba934833ce9f",
+          "id": "b30030f2041d396c518a-ba63e48aadc2442dfbd8",
           "file": "generated_tests.spec.ts",
-          "line": 99,
+          "line": 96,
           "column": 5
         },
         {
-          "title": "TC_015 - Verify user can proceed to checkout",
+          "title": "TC_013 - Verify the user can proceed to checkout using the Checkout button",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 14735,
+                  "error": {
+                    "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tbody tr') to be visible\u001b[22m\n",
+                    "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tbody tr') to be visible\u001b[22m\n\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:113:14",
+                    "location": {
+                      "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
+                      "column": 14,
+                      "line": 113
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 111 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m2000\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 112 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'[routerlink*=\"cart\"]'\u001b[39m)\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 113 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'tbody tr'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 114 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'button:has-text(\"Checkout\")'\u001b[39m)\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m 115 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveURL(\u001b[32m'https://rahulshettyacademy.com/client/#/dashboard/order'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 116 |\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
+                        "column": 14,
+                        "line": 113
+                      },
+                      "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tbody tr') to be visible\u001b[22m\n\n\n  111 |   await page.waitForTimeout(2000);\n  112 |   await page.locator('[routerlink*=\"cart\"]').click();\n> 113 |   await page.waitForSelector('tbody tr', { timeout: 10000 });\n      |              ^\n  114 |   await page.locator('button:has-text(\"Checkout\")').click();\n  115 |   await expect(page).toHaveURL('https://rahulshettyacademy.com/client/#/dashboard/order');\n  116 | });\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:113:14"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-03-15T21:41:12.779Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-013---V-5fba4-t-using-the-Checkout-button\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-013---V-5fba4-t-using-the-Checkout-button\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
+                    "column": 14,
+                    "line": 113
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "b30030f2041d396c518a-074bdd4e22a1af15ffe8",
+          "file": "generated_tests.spec.ts",
+          "line": 107,
+          "column": 5
+        },
+        {
+          "title": "TC_014 - Verify user can enter and select a country for delivery in the checkout page",
           "ok": false,
           "tags": [],
           "tests": [
@@ -820,96 +786,54 @@
                 {
                   "workerIndex": 8,
                   "parallelIndex": 0,
-                  "status": "failed",
-                  "duration": 10919,
+                  "status": "timedOut",
+                  "duration": 30242,
                   "error": {
-                    "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tbody tr') to be visible\u001b[22m\n",
-                    "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tbody tr') to be visible\u001b[22m\n\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:109:14",
-                    "location": {
-                      "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
-                      "column": 14,
-                      "line": 109
-                    },
-                    "snippet": "\u001b[0m \u001b[90m 107 |\u001b[39m   \u001b[36mawait\u001b[39m login(page)\u001b[33m;\u001b[39m\n \u001b[90m 108 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'https://rahulshettyacademy.com/client/#/dashboard/cart'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 109 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'tbody tr'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 110 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'button:has-text(\"Checkout\")'\u001b[39m)\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m 111 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveURL(\u001b[32m'https://rahulshettyacademy.com/client/#/dashboard/order'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 112 |\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m"
+                    "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                    "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
                   },
                   "errors": [
                     {
+                      "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                    },
+                    {
                       "location": {
                         "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
-                        "column": 14,
-                        "line": 109
+                        "column": 75,
+                        "line": 122
                       },
-                      "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tbody tr') to be visible\u001b[22m\n\n\n  107 |   await login(page);\n  108 |   await page.goto('https://rahulshettyacademy.com/client/#/dashboard/cart');\n> 109 |   await page.waitForSelector('tbody tr', { timeout: 10000 });\n      |              ^\n  110 |   await page.locator('button:has-text(\"Checkout\")').click();\n  111 |   await expect(page).toHaveURL('https://rahulshettyacademy.com/client/#/dashboard/order');\n  112 | });\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:109:14"
+                      "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.css-26l3qy-menu').locator('div:has-text(\"India\")')\u001b[22m\n\n\n  120 |   await page.goto('https://rahulshettyacademy.com/client/#/dashboard/order');\n  121 |   await page.locator('input[placeholder=\"Select Country\"]').fill('India');\n> 122 |   await page.locator('.css-26l3qy-menu').locator('div:has-text(\"India\")').click();\n      |                                                                           ^\n  123 |   await expect(page.locator('input[placeholder=\"Select Country\"]')).toHaveValue('India');\n  124 | });\n  125 |\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:122:75"
                     }
                   ],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-03-12T21:23:18.868Z",
+                  "startTime": "2026-03-15T21:41:31.440Z",
                   "annotations": [],
                   "attachments": [
                     {
                       "name": "screenshot",
                       "contentType": "image/png",
-                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-015---Verify-user-can-proceed-to-checkout\\test-failed-1.png"
+                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-014---V-c226f-livery-in-the-checkout-page\\test-failed-1.png"
                     },
                     {
                       "name": "error-context",
                       "contentType": "text/markdown",
-                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-015---Verify-user-can-proceed-to-checkout\\error-context.md"
+                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-014---V-c226f-livery-in-the-checkout-page\\error-context.md"
                     }
-                  ],
-                  "errorLocation": {
-                    "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
-                    "column": 14,
-                    "line": 109
-                  }
+                  ]
                 }
               ],
               "status": "unexpected"
             }
           ],
-          "id": "b30030f2041d396c518a-074a563cfcd13705f3b1",
+          "id": "b30030f2041d396c518a-fed6e3e1a9a98d2b4329",
           "file": "generated_tests.spec.ts",
-          "line": 106,
+          "line": 118,
           "column": 5
         },
         {
-          "title": "TC_016 - Verify user can enter country for delivery during checkout",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 9,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 933,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-03-12T21:23:32.032Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "b30030f2041d396c518a-04f18c7f523584179f82",
-          "file": "generated_tests.spec.ts",
-          "line": 114,
-          "column": 5
-        },
-        {
-          "title": "TC_017 - Verify user can place an order successfully",
+          "title": "TC_015 - Verify user can place an order successfully and be redirected to the order summary page",
           "ok": false,
           "tags": [],
           "tests": [
@@ -923,130 +847,54 @@
                 {
                   "workerIndex": 9,
                   "parallelIndex": 0,
-                  "status": "failed",
-                  "duration": 13361,
+                  "status": "timedOut",
+                  "duration": 30269,
                   "error": {
-                    "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tbody tr') to be visible\u001b[22m\n",
-                    "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tbody tr') to be visible\u001b[22m\n\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:130:14",
-                    "location": {
-                      "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
-                      "column": 14,
-                      "line": 130
-                    },
-                    "snippet": "\u001b[0m \u001b[90m 128 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m2000\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 129 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'[routerlink*=\"cart\"]'\u001b[39m)\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 130 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'tbody tr'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 131 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'button:has-text(\"Checkout\")'\u001b[39m)\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m 132 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mfill(\u001b[32m'[placeholder*=\"Select Country\"]'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'India'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 133 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'.suggestions span'\u001b[39m)\u001b[33m.\u001b[39mfirst()\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m \u001b[90m// Select suggestion\u001b[39m\u001b[0m"
+                    "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                    "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
                   },
                   "errors": [
                     {
+                      "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                    },
+                    {
                       "location": {
                         "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
-                        "column": 14,
-                        "line": 130
+                        "column": 56,
+                        "line": 129
                       },
-                      "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tbody tr') to be visible\u001b[22m\n\n\n  128 |   await page.waitForTimeout(2000);\n  129 |   await page.locator('[routerlink*=\"cart\"]').click();\n> 130 |   await page.waitForSelector('tbody tr', { timeout: 10000 });\n      |              ^\n  131 |   await page.locator('button:has-text(\"Checkout\")').click();\n  132 |   await page.fill('[placeholder*=\"Select Country\"]', 'India');\n  133 |   await page.locator('.suggestions span').first().click(); // Select suggestion\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:130:14"
+                      "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button:has-text(\"Place Order\")')\u001b[22m\n\n\n  127 |   await login(page);\n  128 |   await page.goto('https://rahulshettyacademy.com/client/#/dashboard/order');\n> 129 |   await page.locator('button:has-text(\"Place Order\")').click();\n      |                                                        ^\n  130 |   await expect(page.locator('.hero-primary')).toContainText('Thankyou for the order');\n  131 | });\n  132 |\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:129:56"
                     }
                   ],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-03-12T21:23:33.182Z",
+                  "startTime": "2026-03-15T21:42:05.065Z",
                   "annotations": [],
                   "attachments": [
                     {
                       "name": "screenshot",
                       "contentType": "image/png",
-                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-017---V-ce85a-place-an-order-successfully\\test-failed-1.png"
+                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-015---V-0f682-d-to-the-order-summary-page\\test-failed-1.png"
                     },
                     {
                       "name": "error-context",
                       "contentType": "text/markdown",
-                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-017---V-ce85a-place-an-order-successfully\\error-context.md"
+                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-015---V-0f682-d-to-the-order-summary-page\\error-context.md"
                     }
-                  ],
-                  "errorLocation": {
-                    "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
-                    "column": 14,
-                    "line": 130
-                  }
+                  ]
                 }
               ],
               "status": "unexpected"
             }
           ],
-          "id": "b30030f2041d396c518a-6992278d52917556748c",
+          "id": "b30030f2041d396c518a-83013984c51b8e030a6d",
           "file": "generated_tests.spec.ts",
-          "line": 122,
+          "line": 126,
           "column": 5
         },
         {
-          "title": "TC_018 - Verify order summary page displays order details",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 10,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 1001,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-03-12T21:23:48.593Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "b30030f2041d396c518a-36a203dcf1f2532ebb84",
-          "file": "generated_tests.spec.ts",
-          "line": 138,
-          "column": 5
-        },
-        {
-          "title": "TC_019 - Verify user can access order history",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 10,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 1355,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-03-12T21:23:49.847Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "b30030f2041d396c518a-1e249d9e28bc983b93b1",
-          "file": "generated_tests.spec.ts",
-          "line": 145,
-          "column": 5
-        },
-        {
-          "title": "TC_020 - Verify order history displays all placed orders",
+          "title": "TC_016 - Verify order summary page displays ordered product details and confirmation message",
           "ok": false,
           "tags": [],
           "tests": [
@@ -1060,62 +908,54 @@
                 {
                   "workerIndex": 10,
                   "parallelIndex": 0,
-                  "status": "failed",
-                  "duration": 1921,
+                  "status": "timedOut",
+                  "duration": 30233,
                   "error": {
-                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m",
-                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:154:50",
-                    "location": {
-                      "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
-                      "column": 50,
-                      "line": 154
-                    },
-                    "snippet": "\u001b[0m \u001b[90m 152 |\u001b[39m   \u001b[36mawait\u001b[39m login(page)\u001b[33m;\u001b[39m\n \u001b[90m 153 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'[routerlink*=\"myorders\"]'\u001b[39m)\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 154 |\u001b[39m   expect(\u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'tbody tr'\u001b[39m)\u001b[33m.\u001b[39mcount())\u001b[33m.\u001b[39mtoBeGreaterThan(\u001b[35m0\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 155 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 156 |\u001b[39m\n \u001b[90m 157 |\u001b[39m test(\u001b[32m'TC_021 - Verify user can logout successfully'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                    "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                    "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
                   },
                   "errors": [
                     {
+                      "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                    },
+                    {
                       "location": {
                         "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
-                        "column": 50,
-                        "line": 154
+                        "column": 56,
+                        "line": 136
                       },
-                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n\n  152 |   await login(page);\n  153 |   await page.locator('[routerlink*=\"myorders\"]').click();\n> 154 |   expect(await page.locator('tbody tr').count()).toBeGreaterThan(0);\n      |                                                  ^\n  155 | });\n  156 |\n  157 | test('TC_021 - Verify user can logout successfully', async ({ page }) => {\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:154:50"
+                      "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button:has-text(\"Place Order\")')\u001b[22m\n\n\n  134 |   await login(page);\n  135 |   await page.goto('https://rahulshettyacademy.com/client/#/dashboard/order');\n> 136 |   await page.locator('button:has-text(\"Place Order\")').click();\n      |                                                        ^\n  137 |   await expect(page.locator('.hero-primary')).toContainText('Thankyou for the order');\n  138 |   // Here you may add more assertions to check ordered product details if applicable\n  139 | });\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:136:56"
                     }
                   ],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-03-12T21:23:51.218Z",
+                  "startTime": "2026-03-15T21:42:39.384Z",
                   "annotations": [],
                   "attachments": [
                     {
                       "name": "screenshot",
                       "contentType": "image/png",
-                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-020---V-93bbd--displays-all-placed-orders\\test-failed-1.png"
+                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-016---V-ac1d7-ls-and-confirmation-message\\test-failed-1.png"
                     },
                     {
                       "name": "error-context",
                       "contentType": "text/markdown",
-                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-020---V-93bbd--displays-all-placed-orders\\error-context.md"
+                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-016---V-ac1d7-ls-and-confirmation-message\\error-context.md"
                     }
-                  ],
-                  "errorLocation": {
-                    "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
-                    "column": 50,
-                    "line": 154
-                  }
+                  ]
                 }
               ],
               "status": "unexpected"
             }
           ],
-          "id": "b30030f2041d396c518a-7e56bdddaa4608985b38",
+          "id": "b30030f2041d396c518a-ba3ce8754a118e241a93",
           "file": "generated_tests.spec.ts",
-          "line": 151,
+          "line": 133,
           "column": 5
         },
         {
-          "title": "TC_021 - Verify user can logout successfully",
+          "title": "TC_017 - Verify order history page is accessible and is displaying all past orders",
           "ok": false,
           "tags": [],
           "tests": [
@@ -1130,61 +970,61 @@
                   "workerIndex": 11,
                   "parallelIndex": 0,
                   "status": "failed",
-                  "duration": 7369,
+                  "duration": 1078,
                   "error": {
-                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected: \u001b[32m\"https://rahulshettyacademy.com/client/auth/login\"\u001b[39m\nReceived: \u001b[31m\"https://rahulshettyacademy.com/client/\u001b[7m#/\u001b[27mauth/login\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"https://rahulshettyacademy.com/client/#/auth/login\"\u001b[22m\n",
-                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected: \u001b[32m\"https://rahulshettyacademy.com/client/auth/login\"\u001b[39m\nReceived: \u001b[31m\"https://rahulshettyacademy.com/client/\u001b[7m#/\u001b[27mauth/login\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"https://rahulshettyacademy.com/client/#/auth/login\"\u001b[22m\n\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:160:22",
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:145:18",
                     "location": {
                       "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
-                      "column": 22,
-                      "line": 160
+                      "column": 18,
+                      "line": 145
                     },
-                    "snippet": "\u001b[0m \u001b[90m 158 |\u001b[39m   \u001b[36mawait\u001b[39m login(page)\u001b[33m;\u001b[39m\n \u001b[90m 159 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'.fa-sign-out'\u001b[39m)\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 160 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveURL(\u001b[32m'https://rahulshettyacademy.com/client/auth/login'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 161 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 162 |\u001b[39m\n \u001b[90m 163 |\u001b[39m test(\u001b[32m'TC_022 - Verify case-sensitive behavior of the search field'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                    "snippet": "\u001b[0m \u001b[90m 143 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'https://rahulshettyacademy.com/client/#/dashboard/myorders'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 144 |\u001b[39m   \u001b[36mconst\u001b[39m orders \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'.table tbody tr'\u001b[39m)\u001b[33m.\u001b[39mcount()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 145 |\u001b[39m   expect(orders)\u001b[33m.\u001b[39mtoBeGreaterThan(\u001b[35m0\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 146 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 147 |\u001b[39m\n \u001b[90m 148 |\u001b[39m test(\u001b[32m'TC_018 - Verify user can successfully logout from the application and be redirected to the login page'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
                   },
                   "errors": [
                     {
                       "location": {
                         "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
-                        "column": 22,
-                        "line": 160
+                        "column": 18,
+                        "line": 145
                       },
-                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected: \u001b[32m\"https://rahulshettyacademy.com/client/auth/login\"\u001b[39m\nReceived: \u001b[31m\"https://rahulshettyacademy.com/client/\u001b[7m#/\u001b[27mauth/login\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"https://rahulshettyacademy.com/client/#/auth/login\"\u001b[22m\n\n\n  158 |   await login(page);\n  159 |   await page.locator('.fa-sign-out').click();\n> 160 |   await expect(page).toHaveURL('https://rahulshettyacademy.com/client/auth/login');\n      |                      ^\n  161 | });\n  162 |\n  163 | test('TC_022 - Verify case-sensitive behavior of the search field', async ({ page }) => {\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:160:22"
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n\n  143 |   await page.goto('https://rahulshettyacademy.com/client/#/dashboard/myorders');\n  144 |   const orders = await page.locator('.table tbody tr').count();\n> 145 |   expect(orders).toBeGreaterThan(0);\n      |                  ^\n  146 | });\n  147 |\n  148 | test('TC_018 - Verify user can successfully logout from the application and be redirected to the login page', async ({ page }) => {\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:145:18"
                     }
                   ],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-03-12T21:23:55.212Z",
+                  "startTime": "2026-03-15T21:43:13.758Z",
                   "annotations": [],
                   "attachments": [
                     {
                       "name": "screenshot",
                       "contentType": "image/png",
-                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-021---Verify-user-can-logout-successfully\\test-failed-1.png"
+                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-017---V-0b327--displaying-all-past-orders\\test-failed-1.png"
                     },
                     {
                       "name": "error-context",
                       "contentType": "text/markdown",
-                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-021---Verify-user-can-logout-successfully\\error-context.md"
+                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-017---V-0b327--displaying-all-past-orders\\error-context.md"
                     }
                   ],
                   "errorLocation": {
                     "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
-                    "column": 22,
-                    "line": 160
+                    "column": 18,
+                    "line": 145
                   }
                 }
               ],
               "status": "unexpected"
             }
           ],
-          "id": "b30030f2041d396c518a-b56e62665c35c8576bd5",
+          "id": "b30030f2041d396c518a-feb502572ddd8c101dd1",
           "file": "generated_tests.spec.ts",
-          "line": 157,
+          "line": 141,
           "column": 5
         },
         {
-          "title": "TC_022 - Verify case-sensitive behavior of the search field",
+          "title": "TC_018 - Verify user can successfully logout from the application and be redirected to the login page",
           "ok": false,
           "tags": [],
           "tests": [
@@ -1199,7 +1039,7 @@
                   "workerIndex": 12,
                   "parallelIndex": 0,
                   "status": "timedOut",
-                  "duration": 30154,
+                  "duration": 30303,
                   "error": {
                     "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
                     "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
@@ -1211,27 +1051,27 @@
                     {
                       "location": {
                         "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
-                        "column": 80,
-                        "line": 166
+                        "column": 51,
+                        "line": 150
                       },
-                      "message": "Error: locator.fill: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.card-title-filter input[placeholder=\"search\"]').first()\u001b[22m\n\n\n  164 |   await login(page);\n  165 |   await page.waitForSelector('.card-body', { timeout: 10000 });\n> 166 |   await page.locator('.card-title-filter input[placeholder=\"search\"]').first().fill('PRODUCT NAME');\n      |                                                                                ^\n  167 |   await page.keyboard.press('Enter');\n  168 |   expect(await page.locator('.card-body').count()).toBeGreaterThan(0); // Assumes results handling case sensitivity\n  169 | });\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:166:80"
+                      "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button:has-text(\"Logout\")')\u001b[22m\n\n\n  148 | test('TC_018 - Verify user can successfully logout from the application and be redirected to the login page', async ({ page }) => {\n  149 |   await login(page);\n> 150 |   await page.locator('button:has-text(\"Logout\")').click();\n      |                                                   ^\n  151 |   await expect(page).toHaveURL('https://rahulshettyacademy.com/client/#/auth/login');\n  152 | });\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:150:51"
                     }
                   ],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-03-12T21:24:04.810Z",
+                  "startTime": "2026-03-15T21:43:17.886Z",
                   "annotations": [],
                   "attachments": [
                     {
                       "name": "screenshot",
                       "contentType": "image/png",
-                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-022---V-d4b6b-ehavior-of-the-search-field\\test-failed-1.png"
+                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-018---V-3894a-edirected-to-the-login-page\\test-failed-1.png"
                     },
                     {
                       "name": "error-context",
                       "contentType": "text/markdown",
-                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-022---V-d4b6b-ehavior-of-the-search-field\\error-context.md"
+                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-018---V-3894a-edirected-to-the-login-page\\error-context.md"
                     }
                   ]
                 }
@@ -1239,215 +1079,9 @@
               "status": "unexpected"
             }
           ],
-          "id": "b30030f2041d396c518a-b39b10315d8a55a98c98",
+          "id": "b30030f2041d396c518a-52f70082dd56afae42a3",
           "file": "generated_tests.spec.ts",
-          "line": 163,
-          "column": 5
-        },
-        {
-          "title": "TC_023 - Verify product details page URL contains correct path",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 13,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 990,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-03-12T21:24:37.394Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "b30030f2041d396c518a-6d2793d88e0f20ddf970",
-          "file": "generated_tests.spec.ts",
-          "line": 171,
-          "column": 5
-        },
-        {
-          "title": "TC_024 - Verify country suggestions appear for text input in the country field",
-          "ok": false,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 13,
-                  "parallelIndex": 0,
-                  "status": "failed",
-                  "duration": 6231,
-                  "error": {
-                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.suggestions span')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.suggestions span')\u001b[22m\n",
-                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.suggestions span')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.suggestions span')\u001b[22m\n\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:182:51",
-                    "location": {
-                      "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
-                      "column": 51,
-                      "line": 182
-                    },
-                    "snippet": "\u001b[0m \u001b[90m 180 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'https://rahulshettyacademy.com/client/#/dashboard/order'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 181 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'[placeholder*=\"Select Country\"]'\u001b[39m)\u001b[33m.\u001b[39mfill(\u001b[32m'Ind'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 182 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'.suggestions span'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 183 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 184 |\u001b[39m\n \u001b[90m 185 |\u001b[39m test(\u001b[32m'TC_025 - Verify redirection to order confirmation page after placing an order'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
-                  },
-                  "errors": [
-                    {
-                      "location": {
-                        "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
-                        "column": 51,
-                        "line": 182
-                      },
-                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.suggestions span')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.suggestions span')\u001b[22m\n\n\n  180 |   await page.goto('https://rahulshettyacademy.com/client/#/dashboard/order');\n  181 |   await page.locator('[placeholder*=\"Select Country\"]').fill('Ind');\n> 182 |   await expect(page.locator('.suggestions span')).toBeVisible();\n      |                                                   ^\n  183 | });\n  184 |\n  185 | test('TC_025 - Verify redirection to order confirmation page after placing an order', async ({ page }) => {\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:182:51"
-                    }
-                  ],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-03-12T21:24:38.597Z",
-                  "annotations": [],
-                  "attachments": [
-                    {
-                      "name": "screenshot",
-                      "contentType": "image/png",
-                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-024---V-4c820--input-in-the-country-field\\test-failed-1.png"
-                    },
-                    {
-                      "name": "error-context",
-                      "contentType": "text/markdown",
-                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-024---V-4c820--input-in-the-country-field\\error-context.md"
-                    }
-                  ],
-                  "errorLocation": {
-                    "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
-                    "column": 51,
-                    "line": 182
-                  }
-                }
-              ],
-              "status": "unexpected"
-            }
-          ],
-          "id": "b30030f2041d396c518a-353d7da23ef3b8826c38",
-          "file": "generated_tests.spec.ts",
-          "line": 178,
-          "column": 5
-        },
-        {
-          "title": "TC_025 - Verify redirection to order confirmation page after placing an order",
-          "ok": false,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 14,
-                  "parallelIndex": 0,
-                  "status": "failed",
-                  "duration": 13023,
-                  "error": {
-                    "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tbody tr') to be visible\u001b[22m\n",
-                    "stack": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tbody tr') to be visible\u001b[22m\n\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:193:14",
-                    "location": {
-                      "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
-                      "column": 14,
-                      "line": 193
-                    },
-                    "snippet": "\u001b[0m \u001b[90m 191 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m2000\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 192 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'[routerlink*=\"cart\"]'\u001b[39m)\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 193 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'tbody tr'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 194 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'button:has-text(\"Checkout\")'\u001b[39m)\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m 195 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mfill(\u001b[32m'[placeholder*=\"Select Country\"]'\u001b[39m\u001b[33m,\u001b[39m \u001b[32m'India'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 196 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'.suggestions span'\u001b[39m)\u001b[33m.\u001b[39mfirst()\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\u001b[0m"
-                  },
-                  "errors": [
-                    {
-                      "location": {
-                        "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
-                        "column": 14,
-                        "line": 193
-                      },
-                      "message": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tbody tr') to be visible\u001b[22m\n\n\n  191 |   await page.waitForTimeout(2000);\n  192 |   await page.locator('[routerlink*=\"cart\"]').click();\n> 193 |   await page.waitForSelector('tbody tr', { timeout: 10000 });\n      |              ^\n  194 |   await page.locator('button:has-text(\"Checkout\")').click();\n  195 |   await page.fill('[placeholder*=\"Select Country\"]', 'India');\n  196 |   await page.locator('.suggestions span').first().click();\n    at C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts:193:14"
-                    }
-                  ],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-03-12T21:24:46.882Z",
-                  "annotations": [],
-                  "attachments": [
-                    {
-                      "name": "screenshot",
-                      "contentType": "image/png",
-                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-025---V-3d0c9-page-after-placing-an-order\\test-failed-1.png"
-                    },
-                    {
-                      "name": "error-context",
-                      "contentType": "text/markdown",
-                      "path": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\test-results\\generated_tests-TC-025---V-3d0c9-page-after-placing-an-order\\error-context.md"
-                    }
-                  ],
-                  "errorLocation": {
-                    "file": "C:\\Users\\VIPLOVE\\PycharmProjects\\AgenticQA\\tests\\playwright\\generated\\generated_tests.spec.ts",
-                    "column": 14,
-                    "line": 193
-                  }
-                }
-              ],
-              "status": "unexpected"
-            }
-          ],
-          "id": "b30030f2041d396c518a-510bad0b4d4a53655182",
-          "file": "generated_tests.spec.ts",
-          "line": 185,
-          "column": 5
-        },
-        {
-          "title": "TC_026 - Verify confirmation message appears on order summary page upon successful order placement",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 15,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 931,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-03-12T21:25:02.072Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "b30030f2041d396c518a-69c4ed13138b7691dbd9",
-          "file": "generated_tests.spec.ts",
-          "line": 201,
+          "line": 148,
           "column": 5
         }
       ]
@@ -1455,11 +1089,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-03-12T21:20:52.877Z",
-    "duration": 250535.577,
-    "expected": 11,
+    "startTime": "2026-03-15T21:36:11.419Z",
+    "duration": 458770.605,
+    "expected": 5,
     "skipped": 0,
-    "unexpected": 15,
+    "unexpected": 13,
     "flaky": 0
   }
 }

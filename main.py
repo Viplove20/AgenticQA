@@ -9,9 +9,9 @@ from autogen_ext.models.openai import OpenAIChatCompletionClient
 from autogen_core.model_context import BufferedChatCompletionContext
 from agents.jira_agent import JiraAgent
 from utils.capture_authenticated_dom import capture_authenticated_dom
-from utils.capture_dom import capture_page_dom
 from utils.extract_code_block import extract_code_block
 from utils.gitHub_utils import push_to_github
+from utils.promp_loader import load_prompt
 from utils.run_playwright_tests import run_playwright_tests
 
 # Load environment variables
@@ -24,7 +24,7 @@ async def main():
 
     openai_key = os.getenv("OPENAI_API_KEY")
     if not openai_key:
-        print("❌ OPENAI_API_KEY not found in environment")
+        print("OPENAI_API_KEY not found in environment")
         return
 
     model_client = OpenAIChatCompletionClient(
@@ -34,7 +34,7 @@ async def main():
 
     brd_path = Path("requirements.txt")
     if not brd_path.exists():
-        print(f"❌ {brd_path} not found")
+        print(f" {brd_path} not found")
         return
 
     with open(brd_path, "r", encoding="utf-8") as f:
@@ -46,13 +46,6 @@ async def main():
     # Directory where generated .spec.ts files will be saved
     tests_dir = Path("tests/playwright/generated")
     tests_dir.mkdir(parents=True, exist_ok=True)
-
-    def load_prompt(filename: str) -> str:
-        prompt_path = Path("prompts") / filename
-        if prompt_path.exists():
-            with open(prompt_path, "r", encoding="utf-8") as f:
-                return f.read()
-        return f"You are a {filename.replace('.md', '')} agent."
 
     try:
         # ── STEP 1: PLANNER AGENT ────────────────────────────────────────────
@@ -102,28 +95,27 @@ async def main():
         username = os.getenv("LOGIN_USERNAME", "")
         password = os.getenv("LOGIN_PASSWORD", "")
 
-        login_dom = await capture_page_dom(
-            "https://rahulshettyacademy.com/client/#/auth/login")
+        login_dom = await capture_authenticated_dom(
+            "https://rahulshettyacademy.com/client/#/auth/login", username, password)
+        login_dom = login_dom[:20000]
 
         dashboard_dom = await capture_authenticated_dom(
             "https://rahulshettyacademy.com/client/#/dashboard/dash",
             username, password)
+        dashboard_dom = dashboard_dom[:20000]
 
         cart_dom = await capture_authenticated_dom(
             "https://rahulshettyacademy.com/client/dashboard/cart",
             username, password)
+        cart_dom = cart_dom[:20000]
 
         order_dom = await capture_authenticated_dom(
             "https://rahulshettyacademy.com/client/#/dashboard/myorders",
             username, password)
+        order_dom = order_dom[:20000]
 
-        # Truncate to avoid token limits - first 8000 chars is enough for locators
-        login_dom_snippet = login_dom[:8000]
-        dashboard_dom_snippet = dashboard_dom[:8000]
-        cart_dom_snippet = cart_dom[:8000]
-        order_dom_snippet = order_dom[:8000]
-
-        executor_system_prompt = (load_prompt("executor_agent.md"))
+        #executor_system_prompt = (load_prompt("executor_agent.md"))
+        executor_system_prompt = (load_prompt("executor_agent_with_dom.md"))
 
         executor_agent = AssistantAgent(
             name="executor_agent",
@@ -132,13 +124,42 @@ async def main():
             model_context=BufferedChatCompletionContext(buffer_size=10)
         )
 
-        executor_result = await executor_agent.run(task=test_output)
+
+        executor_task = f"""
+            Generate Playwright TypeScript tests using ONLY the locators found in the DOM.
+        
+            CRITICAL RULES:
+            - Do NOT guess locators
+            - Use only selectors present in the provided DOM
+            - Prefer stable selectors: data-testid, id, aria-label
+            - If selector not found, search deeper in DOM
+        
+            TEST CASES:
+            {test_output}
+        
+            LOGIN PAGE DOM:
+            {login_dom}
+        
+            DASHBOARD PAGE DOM:
+            {dashboard_dom}
+        
+            CART PAGE DOM:
+            {cart_dom}
+        
+            ORDERS PAGE DOM:
+            {order_dom}
+            """
+
+        executor_result = await executor_agent.run(task=executor_task)
+        #executor_result = await executor_agent.run(task=test_output)
         executor_output = executor_result.messages[-1].content
 
         # Extract and save the .spec.ts file
         spec_code = extract_code_block(executor_output)
         spec_file = tests_dir / "generated_tests.spec.ts"
-
+        print("\n================ EXECUTOR OUTPUT ================\n")
+        print(executor_output)
+        print("\n================================================\n")
         with open(spec_file, "w", encoding="utf-8") as f:
             f.write(spec_code)
 
@@ -162,10 +183,10 @@ async def main():
         print(f"   Passed: {real_results['passed']} / {real_results['total_tests']}")
         print(f"   Pass rate: {real_results['pass_rate']}\n")
 
-        # ── STEP 3c: CREATE JIRA BUGS FOR FAILURES ─────────────────
+        # ── STEP 4: CREATE JIRA BUGS FOR FAILURES ─────────────────
 
         print("=" * 80)
-        print("STEP 3c: JIRA AGENT - Logging Bugs in Jira")
+        print("STEP 4: JIRA AGENT - Logging Bugs in Jira")
         print("=" * 80 + "\n")
 
         if real_results["failed"] > 0:
@@ -185,9 +206,9 @@ async def main():
             jira_results = {"total_bugs_created": 0, "bug_ids": []}
 
 
-        # ── STEP 4: REPORTER AGENT ────────────────────────────────────────────
+        # ── STEP 5: REPORTER AGENT ────────────────────────────────────────────
         print("=" * 80)
-        print("STEP 4: REPORTER AGENT - Generating Test Report")
+        print("STEP 5: REPORTER AGENT - Generating Test Report")
         print("=" * 80 + "\n")
 
         reporter_agent = AssistantAgent(

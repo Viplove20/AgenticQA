@@ -1,68 +1,60 @@
 {
-  "total_tests": 26,
-  "passed": 11,
-  "failed": 15,
-  "pass_rate": "42.31%",
+  "total_tests": 18,
+  "passed": 5,
+  "failed": 13,
+  "pass_rate": "27.78%",
   "failed_tests": [
     {
-      "test_id": "TC_001 - Verify user can access the login page",
-      "failure_reason": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected: \u001b[32m\"https://rahulshettyacademy.com/client/auth/login\"\u001b[39m\nReceived: \u001b[31m\"https://rahulshettyacademy.com/client/\u001b[7m#/\u001b[27mauth/login\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 \u00d7 unexpected value \"https://rahulshettyacademy.com/client/#/auth/login\"\u001b[22m\n"
-    },
-    {
-      "test_id": "TC_004 - Verify error message is displayed for invalid credentials",
+      "test_id": "TC_003 - Verify user login fails with an invalid password",
       "failure_reason": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.error')\nExpected: visible\nTimeout: 8000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 8000ms\u001b[22m\n\u001b[2m  - waiting for locator('.error')\u001b[22m\n"
     },
     {
-      "test_id": "TC_005 - Verify login fails when email field is empty",
+      "test_id": "TC_004 - Verify login attempt without entering email displays an error message",
       "failure_reason": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.error')\nExpected: visible\nTimeout: 8000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 8000ms\u001b[22m\n\u001b[2m  - waiting for locator('.error')\u001b[22m\n"
     },
     {
-      "test_id": "TC_006 - Verify login fails when password field is empty",
-      "failure_reason": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.error')\nExpected: visible\nTimeout: 8000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 8000ms\u001b[22m\n\u001b[2m  - waiting for locator('.error')\u001b[22m\n"
-    },
-    {
-      "test_id": "TC_008 - Verify user can search products using the search field",
+      "test_id": "TC_006 - Verify product search returns the correct product for exact case-sensitive names",
       "failure_reason": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
     },
     {
-      "test_id": "TC_009 - Verify user can use category filters on the product list",
+      "test_id": "TC_007 - Verify user can filter products using category checkboxes",
       "failure_reason": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
     },
     {
-      "test_id": "TC_012 - Verify user can add products to the cart",
+      "test_id": "TC_008 - Verify user is redirected to the product details page upon clicking the View button",
+      "failure_reason": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/.*\\/product\\/details/\u001b[39m\nReceived string:  \u001b[31m\"https://rahulshettyacademy.com/client/#/dashboard/product-details/6960eae1c941646b7a8b3ed3\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 \u00d7 unexpected value \"https://rahulshettyacademy.com/client/#/dashboard/product-details/6960eae1c941646b7a8b3ed3\"\u001b[22m\n"
+    },
+    {
+      "test_id": "TC_011 - Verify all products added from the dashboard are displayed in the cart",
       "failure_reason": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tbody tr') to be visible\u001b[22m\n"
     },
     {
-      "test_id": "TC_014 - Verify cart displays products added from the dashboard",
+      "test_id": "TC_012 - Verify the user can proceed to checkout using the Buy Now button",
       "failure_reason": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tbody tr') to be visible\u001b[22m\n"
     },
     {
-      "test_id": "TC_015 - Verify user can proceed to checkout",
+      "test_id": "TC_013 - Verify the user can proceed to checkout using the Checkout button",
       "failure_reason": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tbody tr') to be visible\u001b[22m\n"
     },
     {
-      "test_id": "TC_017 - Verify user can place an order successfully",
-      "failure_reason": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tbody tr') to be visible\u001b[22m\n"
+      "test_id": "TC_014 - Verify user can enter and select a country for delivery in the checkout page",
+      "failure_reason": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
     },
     {
-      "test_id": "TC_020 - Verify order history displays all placed orders",
+      "test_id": "TC_015 - Verify user can place an order successfully and be redirected to the order summary page",
+      "failure_reason": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+    },
+    {
+      "test_id": "TC_016 - Verify order summary page displays ordered product details and confirmation message",
+      "failure_reason": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+    },
+    {
+      "test_id": "TC_017 - Verify order history page is accessible and is displaying all past orders",
       "failure_reason": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m"
     },
     {
-      "test_id": "TC_021 - Verify user can logout successfully",
-      "failure_reason": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected: \u001b[32m\"https://rahulshettyacademy.com/client/auth/login\"\u001b[39m\nReceived: \u001b[31m\"https://rahulshettyacademy.com/client/\u001b[7m#/\u001b[27mauth/login\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 \u00d7 unexpected value \"https://rahulshettyacademy.com/client/#/auth/login\"\u001b[22m\n"
-    },
-    {
-      "test_id": "TC_022 - Verify case-sensitive behavior of the search field",
+      "test_id": "TC_018 - Verify user can successfully logout from the application and be redirected to the login page",
       "failure_reason": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
-    },
-    {
-      "test_id": "TC_024 - Verify country suggestions appear for text input in the country field",
-      "failure_reason": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.suggestions span')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.suggestions span')\u001b[22m\n"
-    },
-    {
-      "test_id": "TC_025 - Verify redirection to order confirmation page after placing an order",
-      "failure_reason": "TimeoutError: page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tbody tr') to be visible\u001b[22m\n"
     }
   ],
   "return_code": 1

@@ -20,19 +20,24 @@ def run_playwright_tests(test_file_path: Path, output_path: Path) -> dict:
     if not env.get("LOGIN_USERNAME") or not env.get("LOGIN_PASSWORD"):
         print("⚠️  WARNING: LOGIN_USERNAME or LOGIN_PASSWORD not set in .env")
 
-    project_root = Path(__file__).parent.resolve()  # always the folder where main.py lives
+    #project_root = Path(__file__).parent.resolve()  # always the folder where main.py lives
+    project_root = Path(__file__).resolve().parents[1]
 
-    env = os.environ.copy()
     # env["LOGIN_USERNAME"] = os.getenv("LOGIN_USERNAME", "")
     # env["LOGIN_PASSWORD"] = os.getenv("LOGIN_PASSWORD", "")
     env["LOGIN_USERNAME"] = "viplovepradhan111@gmail.com"
     env["LOGIN_PASSWORD"] = "test123"
 
     result = subprocess.run(
-        ["cmd", "/c", "npx", "playwright", "test", "--headed"],
+        ["cmd", "/c", "npx", "playwright", "test", str(test_file_path).replace("\\", "/"), "--headed"],
         cwd=str(project_root),
         capture_output=False,
-        env=env,
+        #env=env,
+        env={
+            **os.environ,
+            "LOGIN_USERNAME": "viplovepradhan111@gmail.com",
+            "LOGIN_PASSWORD": "test123"
+        },
         timeout=900
     )
 

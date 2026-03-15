@@ -1,0 +1,56 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - navigation [ref=e5]:
+    - generic [ref=e7]:
+      - link "Automation Automation Practice":
+        - /url: ""
+        - generic [ref=e8] [cursor=pointer]:
+          - heading "Automation" [level=3] [ref=e9]
+          - paragraph [ref=e10]: Automation Practice
+    - text: 
+    - link "Get Shortlisted by Recruiters - Take QA Skill Assessments on TechSmartHire" [ref=e11] [cursor=pointer]:
+      - /url: https://techsmarthire.com/
+    - list [ref=e12]:
+      - listitem [ref=e13] [cursor=pointer]:
+        - button " HOME" [ref=e14]:
+          - generic [ref=e15]: 
+          - text: HOME
+      - listitem
+      - listitem [ref=e16] [cursor=pointer]:
+        - button " ORDERS" [ref=e17]:
+          - generic [ref=e18]: 
+          - text: ORDERS
+      - listitem [ref=e19] [cursor=pointer]:
+        - button " Cart" [ref=e20]:
+          - generic [ref=e21]: 
+          - text: Cart
+      - listitem [ref=e22] [cursor=pointer]:
+        - button "Sign Out" [ref=e23]:
+          - generic [ref=e24]: 
+          - text: Sign Out
+  - generic [ref=e28]:
+    - link "Continue Shopping❯" [ref=e29] [cursor=pointer]:
+      - /url: "#/dashboard"
+    - generic [ref=e30]:
+      - heading "ADIDAS ORIGINAL" [level=2] [ref=e31]
+      - heading "$ 11500" [level=3] [ref=e32]
+      - button "Add to Cart" [ref=e34] [cursor=pointer]
+      - generic [ref=e35]:
+        - heading "product details" [level=6] [ref=e36]
+        - paragraph [ref=e37]: Apple phone
+      - generic [ref=e38]:
+        - heading "Share It" [level=6] [ref=e39]
+        - list [ref=e41]:
+          - listitem [ref=e42]:
+            - generic [ref=e44]: 
+          - listitem [ref=e45]:
+            - generic [ref=e47]: 
+          - listitem [ref=e48]:
+            - generic [ref=e50]: 
+          - listitem [ref=e51]:
+            - generic [ref=e53]: 
+          - listitem [ref=e54]:
+            - generic [ref=e56]: 
+```

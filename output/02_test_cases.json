@@ -7,19 +7,19 @@
       {
         "test_id": "TC_001",
         "module": "Login",
-        "scenario": "Verify user can access the login page",
+        "scenario": "Verify login page is accessible from the login URL",
         "priority": "High",
         "preconditions": [],
         "steps": [
-          "Navigate to login page"
+          "Navigate to the login URL"
         ],
-        "expected_result": "Login page is displayed",
+        "expected_result": "Login page should be displayed",
         "test_data": {}
       },
       {
         "test_id": "TC_002",
         "module": "Login",
-        "scenario": "Verify user can login with valid credentials",
+        "scenario": "Verify user can login with valid credentials and be redirected to the Dashboard page",
         "priority": "High",
         "preconditions": [
           "User is on login page",
@@ -31,7 +31,7 @@
           "Enter password from environment variable LOGIN_PASSWORD",
           "Click login button"
         ],
-        "expected_result": "User should be redirected to the dashboard",
+        "expected_result": "User should be redirected to the Dashboard page",
         "test_data": {
           "username_env": "LOGIN_USERNAME",
           "password_env": "LOGIN_PASSWORD"
@@ -40,354 +40,245 @@
       {
         "test_id": "TC_003",
         "module": "Login",
-        "scenario": "Verify user session starts after successful login",
+        "scenario": "Verify user login fails with an invalid password",
         "priority": "High",
         "preconditions": [
-          "User is on the dashboard"
+          "User is on login page",
+          "User account exists"
         ],
         "steps": [
-          "Verify session is active"
+          "Navigate to login page",
+          "Enter username from environment variable LOGIN_USERNAME",
+          "Enter invalid password",
+          "Click login button"
         ],
-        "expected_result": "User session is active and valid",
-        "test_data": {}
+        "expected_result": "Error message indicating invalid credentials should be displayed",
+        "test_data": {
+          "username_env": "LOGIN_USERNAME"
+        }
       },
       {
         "test_id": "TC_004",
         "module": "Login",
-        "scenario": "Verify error message is displayed for invalid credentials",
-        "priority": "High",
+        "scenario": "Verify login attempt without entering email displays an error message",
+        "priority": "Medium",
         "preconditions": [
           "User is on login page"
         ],
         "steps": [
-          "Enter invalid username",
-          "Enter invalid password",
+          "Navigate to login page",
+          "Leave email field empty",
+          "Enter password from environment variable LOGIN_PASSWORD",
           "Click login button"
         ],
-        "expected_result": "Error message 'Invalid credentials' is displayed",
-        "test_data": {}
+        "expected_result": "Error message for missing email should be displayed",
+        "test_data": {
+          "password_env": "LOGIN_PASSWORD"
+        }
       },
       {
         "test_id": "TC_005",
-        "module": "Login",
-        "scenario": "Verify login fails when email field is empty",
-        "priority": "Medium",
+        "module": "Dashboard",
+        "scenario": "Verify dashboard displays a list of all available products",
+        "priority": "High",
         "preconditions": [
-          "User is on the login page"
+          "User is logged in and on the Dashboard page"
         ],
         "steps": [
-          "Leave email field empty",
-          "Enter password",
-          "Click login button"
+          "Verify products list is displayed"
         ],
-        "expected_result": "Error message 'Email is required' is displayed",
+        "expected_result": "List of available products should be displayed on the dashboard",
         "test_data": {}
       },
       {
         "test_id": "TC_006",
-        "module": "Login",
-        "scenario": "Verify login fails when password field is empty",
+        "module": "Dashboard",
+        "scenario": "Verify product search returns the correct product for exact case-sensitive names",
         "priority": "Medium",
         "preconditions": [
-          "User is on the login page"
+          "User is logged in and on the Dashboard page"
         ],
         "steps": [
-          "Enter valid email",
-          "Leave password field empty",
-          "Click login button"
+          "Enter exact product name in the search bar",
+          "Press enter or click search button"
         ],
-        "expected_result": "Error message 'Password is required' is displayed",
+        "expected_result": "The correct product matching the search term should be displayed",
         "test_data": {}
       },
       {
         "test_id": "TC_007",
         "module": "Dashboard",
-        "scenario": "Verify all available products are displayed on the dashboard",
+        "scenario": "Verify user can filter products using category checkboxes",
         "priority": "Medium",
         "preconditions": [
-          "User is logged in and on dashboard page"
+          "User is logged in and on the Dashboard page"
         ],
         "steps": [
-          "Verify product list is displayed"
+          "Select a category checkbox",
+          "Verify products list is filtered accordingly"
         ],
-        "expected_result": "All available products are displayed",
+        "expected_result": "Products list should be filtered to show only items in the selected category",
         "test_data": {}
       },
       {
         "test_id": "TC_008",
         "module": "Dashboard",
-        "scenario": "Verify user can search products using the search field",
+        "scenario": "Verify user is redirected to the product details page upon clicking the View button",
         "priority": "Medium",
         "preconditions": [
-          "User is logged in and on dashboard page"
+          "User is logged in and on the Dashboard page"
         ],
         "steps": [
-          "Enter product name in search field",
-          "Click search button"
+          "Click the View button of a specific product"
         ],
-        "expected_result": "Matching products are displayed",
+        "expected_result": "User should be redirected to the product details page",
         "test_data": {}
       },
       {
         "test_id": "TC_009",
         "module": "Dashboard",
-        "scenario": "Verify user can use category filters on the product list",
-        "priority": "Medium",
+        "scenario": "Verify user can add a product to cart from the dashboard",
+        "priority": "High",
         "preconditions": [
-          "User is logged in and on dashboard page"
+          "User is logged in and on the Dashboard page"
         ],
         "steps": [
-          "Select a category filter"
+          "Click on Add to Cart button for a specific product"
         ],
-        "expected_result": "Products from the selected category are displayed",
+        "expected_result": "The selected product should be added to the cart",
         "test_data": {}
       },
       {
         "test_id": "TC_010",
-        "module": "Dashboard",
-        "scenario": "Verify home navigation redirects user to dashboard page",
-        "priority": "Medium",
+        "module": "Cart",
+        "scenario": "Verify cart page is accessible from cart navigation after adding products",
+        "priority": "High",
         "preconditions": [
+          "User has added products to the cart",
           "User is logged in"
         ],
         "steps": [
-          "Click home navigation link"
+          "Click on the Cart button in the navigation bar"
         ],
-        "expected_result": "User is redirected to dashboard page",
+        "expected_result": "Cart page should be displayed with added products",
         "test_data": {}
       },
       {
         "test_id": "TC_011",
-        "module": "Dashboard",
-        "scenario": "Verify user can view product details from the dashboard",
-        "priority": "Medium",
+        "module": "Cart",
+        "scenario": "Verify all products added from the dashboard are displayed in the cart",
+        "priority": "High",
         "preconditions": [
-          "User is logged in and on dashboard page"
+          "User has added products to the cart",
+          "User is logged in and on the Cart page"
         ],
         "steps": [
-          "Click on a product"
+          "Verify that all added products are displayed in the cart"
         ],
-        "expected_result": "Product details page is displayed",
+        "expected_result": "All products added from the dashboard should be displayed in the cart",
         "test_data": {}
       },
       {
         "test_id": "TC_012",
-        "module": "Dashboard",
-        "scenario": "Verify user can add products to the cart",
+        "module": "Cart",
+        "scenario": "Verify the user can proceed to checkout using the Buy Now button",
         "priority": "High",
         "preconditions": [
-          "User is logged in and on dashboard page"
+          "User has added products to the cart",
+          "User is logged in and on the Cart page"
         ],
         "steps": [
-          "Click on a product",
-          "Click 'Add to Cart' button"
+          "Click on the Buy Now button"
         ],
-        "expected_result": "Product is added to the cart",
+        "expected_result": "User should be directed to the checkout page",
         "test_data": {}
       },
       {
         "test_id": "TC_013",
         "module": "Cart",
-        "scenario": "Verify user can access the cart page",
+        "scenario": "Verify the user can proceed to checkout using the Checkout button",
         "priority": "High",
         "preconditions": [
-          "User is logged in"
+          "User has added products to the cart",
+          "User is logged in and on the Cart page"
         ],
         "steps": [
-          "Click cart icon"
+          "Click on the Checkout button"
         ],
-        "expected_result": "Cart page is displayed",
+        "expected_result": "User should be directed to the checkout page",
         "test_data": {}
       },
       {
         "test_id": "TC_014",
-        "module": "Cart",
-        "scenario": "Verify cart displays products added from the dashboard",
-        "priority": "High",
+        "module": "Checkout",
+        "scenario": "Verify user can enter and select a country for delivery in the checkout page",
+        "priority": "Medium",
         "preconditions": [
-          "User is logged in",
-          "Products have been added to cart"
+          "User is logged in and on the Checkout page"
         ],
         "steps": [
-          "Navigate to cart page"
+          "Enter a country name in the delivery address field",
+          "Select the country from the dropdown menu"
         ],
-        "expected_result": "Cart displays products added from the dashboard",
+        "expected_result": "Entered country should be selected successfully for delivery",
         "test_data": {}
       },
       {
         "test_id": "TC_015",
-        "module": "Cart",
-        "scenario": "Verify user can proceed to checkout",
+        "module": "Checkout",
+        "scenario": "Verify user can place an order successfully and be redirected to the order summary page",
         "priority": "High",
         "preconditions": [
-          "User is logged in",
-          "Cart contains products"
+          "User is logged in and on the Checkout page",
+          "User has entered all required checkout information"
         ],
         "steps": [
-          "Navigate to cart page",
-          "Click 'Proceed to Checkout' button"
+          "Click on the Place Order button"
         ],
-        "expected_result": "User is redirected to checkout page",
+        "expected_result": "Order should be placed successfully and user should be redirected to the order summary page",
         "test_data": {}
       },
       {
         "test_id": "TC_016",
-        "module": "Checkout",
-        "scenario": "Verify user can enter country for delivery during checkout",
-        "priority": "Medium",
+        "module": "Order Summary",
+        "scenario": "Verify order summary page displays ordered product details and confirmation message",
+        "priority": "High",
         "preconditions": [
-          "User is on checkout page"
+          "User has placed an order and is on the Order Summary page"
         ],
         "steps": [
-          "Enter country in country field"
+          "Verify ordered product details are displayed",
+          "Verify confirmation message is displayed"
         ],
-        "expected_result": "Country is entered successfully",
+        "expected_result": "Order summary page should display ordered products and a confirmation message",
         "test_data": {}
       },
       {
         "test_id": "TC_017",
-        "module": "Checkout",
-        "scenario": "Verify user can place an order successfully",
-        "priority": "High",
+        "module": "Order History",
+        "scenario": "Verify order history page is accessible and is displaying all past orders",
+        "priority": "Medium",
         "preconditions": [
-          "User is on checkout page",
-          "All checkout details are filled"
+          "User is logged in"
         ],
         "steps": [
-          "Click 'Place Order' button"
+          "Navigate to order history page"
         ],
-        "expected_result": "Order is placed successfully",
+        "expected_result": "Order history page should be displayed with all past orders listed",
         "test_data": {}
       },
       {
         "test_id": "TC_018",
-        "module": "Order Summary",
-        "scenario": "Verify order summary page displays order details",
-        "priority": "Medium",
-        "preconditions": [
-          "User has placed an order"
-        ],
-        "steps": [
-          "Navigate to order summary page"
-        ],
-        "expected_result": "Order summary page displays correct order details",
-        "test_data": {}
-      },
-      {
-        "test_id": "TC_019",
-        "module": "Order History",
-        "scenario": "Verify user can access order history",
-        "priority": "Low",
-        "preconditions": [
-          "User is logged in"
-        ],
-        "steps": [
-          "Navigate to order history page"
-        ],
-        "expected_result": "Order history page is displayed",
-        "test_data": {}
-      },
-      {
-        "test_id": "TC_020",
-        "module": "Order History",
-        "scenario": "Verify order history displays all placed orders",
-        "priority": "Low",
-        "preconditions": [
-          "User is logged in",
-          "User has placed orders"
-        ],
-        "steps": [
-          "Navigate to order history page"
-        ],
-        "expected_result": "Order history displays all placed orders",
-        "test_data": {}
-      },
-      {
-        "test_id": "TC_021",
         "module": "Logout",
-        "scenario": "Verify user can logout successfully",
+        "scenario": "Verify user can successfully logout from the application and be redirected to the login page",
         "priority": "Medium",
         "preconditions": [
           "User is logged in"
         ],
         "steps": [
-          "Click logout button"
+          "Click on the logout button"
         ],
-        "expected_result": "User is logged out successfully and redirected to login page",
-        "test_data": {}
-      },
-      {
-        "test_id": "TC_022",
-        "module": "Dashboard",
-        "scenario": "Verify case-sensitive behavior of the search field",
-        "priority": "Low",
-        "preconditions": [
-          "User is logged in and on dashboard page"
-        ],
-        "steps": [
-          "Enter product name with uppercase letters in search field",
-          "Click search button"
-        ],
-        "expected_result": "Matching results are displayed considering case sensitivity",
-        "test_data": {}
-      },
-      {
-        "test_id": "TC_023",
-        "module": "Dashboard",
-        "scenario": "Verify product details page URL contains correct path",
-        "priority": "Low",
-        "preconditions": [
-          "User is logged in and on dashboard page"
-        ],
-        "steps": [
-          "Click on a product",
-          "Verify URL contains correct product path"
-        ],
-        "expected_result": "Product details page URL is correct",
-        "test_data": {}
-      },
-      {
-        "test_id": "TC_024",
-        "module": "Checkout",
-        "scenario": "Verify country suggestions appear for text input in the country field",
-        "priority": "Medium",
-        "preconditions": [
-          "User is on checkout page"
-        ],
-        "steps": [
-          "Start typing a country name in the country field"
-        ],
-        "expected_result": "Relevant country suggestions appear",
-        "test_data": {}
-      },
-      {
-        "test_id": "TC_025",
-        "module": "Checkout",
-        "scenario": "Verify redirection to order confirmation page after placing an order",
-        "priority": "High",
-        "preconditions": [
-          "User is on checkout page",
-          "Order details are complete"
-        ],
-        "steps": [
-          "Click 'Place Order' button",
-          "Wait for redirection"
-        ],
-        "expected_result": "User is redirected to order confirmation page",
-        "test_data": {}
-      },
-      {
-        "test_id": "TC_026",
-        "module": "Order Summary",
-        "scenario": "Verify confirmation message appears on order summary page upon successful order placement",
-        "priority": "High",
-        "preconditions": [
-          "Order is placed and user is on order summary page"
-        ],
-        "steps": [
-          "Check for confirmation message"
-        ],
-        "expected_result": "Confirmation message is displayed",
+        "expected_result": "User should be logged out successfully and redirected to the login page",
         "test_data": {}
       }
     ]
