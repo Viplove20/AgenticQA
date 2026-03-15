@@ -1,154 +1,21 @@
 import asyncio
 import os
-import sys
 import json
-import subprocess
 import re
 from pathlib import Path
-
-from autogen_agentchat.ui import Console
 from dotenv import load_dotenv
 from autogen_agentchat.agents import AssistantAgent
 from autogen_ext.models.openai import OpenAIChatCompletionClient
 from autogen_core.model_context import BufferedChatCompletionContext
-from playwright.async_api import async_playwright
 from agents.jira_agent import JiraAgent
+from utils.capture_authenticated_dom import capture_authenticated_dom
+from utils.capture_dom import capture_page_dom
+from utils.extract_code_block import extract_code_block
+from utils.gitHub_utils import push_to_github
+from utils.run_playwright_tests import run_playwright_tests
 
 # Load environment variables
 load_dotenv()
-
-async def capture_page_dom(url: str) -> str:
-    """Opens the URL with a real browser and returns the full HTML for AI to inspect."""
-    print(f"\n🔍 Capturing DOM from: {url}")
-    async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=True)
-        page = await browser.new_page()
-        await page.goto(url, wait_until="networkidle")
-        html = await page.content()
-        await browser.close()
-    print("✓ DOM captured\n")
-    return html
-
-async def capture_authenticated_dom(url: str, username: str, password: str) -> str:
-    """Logs in first, then captures DOM from an authenticated page."""
-    print(f"\n🔍 Capturing authenticated DOM from: {url}")
-    async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=True)
-        page = await browser.new_page()
-
-        # Login first
-        await page.goto('https://rahulshettyacademy.com/client/auth/login', wait_until="networkidle")
-        await page.locator('#userEmail').fill(username)
-        await page.locator('#userPassword').fill(password)
-        await page.locator('#login').click()
-        await page.wait_for_url('**/dashboard**', timeout=15000)
-
-        # Now navigate to target page
-        await page.goto(url, wait_until="networkidle")
-        await page.wait_for_timeout(2000)  # wait for Angular to render
-        html = await page.content()
-        await browser.close()
-    print(f"✓ Authenticated DOM captured from {url}\n")
-    return html
-
-def extract_code_block(text: str) -> str:
-    """Extract code from markdown code blocks if present."""
-    match = re.search(r"```(?:typescript|javascript|ts|js)?\n(.*?)```", text, re.DOTALL)
-    if match:
-        return match.group(1).strip()
-    return text.strip()
-
-
-def run_playwright_tests(test_file_path: Path, output_path: Path) -> dict:
-    """
-    Actually execute the generated Playwright test file using npx playwright test.
-    Returns parsed results from the JSON report.
-    """
-    report_path = output_path / "playwright-report" / "results.json"
-    report_path.parent.mkdir(parents=True, exist_ok=True)
-
-    print(f"\n🚀 Running Playwright tests from: {test_file_path}")
-    print(f"📄 Report will be saved to: {report_path}\n")
-
-    env = os.environ.copy()
-    # Ensure LOGIN_USERNAME and LOGIN_PASSWORD are set
-    if not env.get("LOGIN_USERNAME") or not env.get("LOGIN_PASSWORD"):
-        print("⚠️  WARNING: LOGIN_USERNAME or LOGIN_PASSWORD not set in .env")
-
-    project_root = Path(__file__).parent.resolve()  # always the folder where main.py lives
-
-    env = os.environ.copy()
-    # env["LOGIN_USERNAME"] = os.getenv("LOGIN_USERNAME", "")
-    # env["LOGIN_PASSWORD"] = os.getenv("LOGIN_PASSWORD", "")
-    env["LOGIN_USERNAME"] = "viplovepradhan111@gmail.com"
-    env["LOGIN_PASSWORD"] = "test123"
-
-    result = subprocess.run(
-        ["cmd", "/c", "npx", "playwright", "test", "--headed"],
-        cwd=str(project_root),
-        capture_output=False,
-        env=env,
-        timeout=900
-    )
-
-    # Parse the JSON report playwright generates
-    if report_path.exists():
-        with open(report_path, "r", encoding="utf-8") as f:
-            raw = json.load(f)
-
-        passed = sum(
-            1 for suite in raw.get("suites", [])
-            for spec in suite.get("specs", [])
-            for test in spec.get("tests", [])
-            if test.get("status") == "expected"
-        )
-        failed_tests = [
-            {
-                "test_id": spec.get("title", ""),
-                "failure_reason": test.get("results", [{}])[0].get("error", {}).get("message", "Unknown")
-            }
-            for suite in raw.get("suites", [])
-            for spec in suite.get("specs", [])
-            for test in spec.get("tests", [])
-            if test.get("status") == "unexpected"
-        ]
-        total = passed + len(failed_tests)
-        return {
-            "total_tests": total,
-            "passed": passed,
-            "failed": len(failed_tests),
-            "pass_rate": f"{(passed/total*100):.2f}%" if total > 0 else "0%",
-            "failed_tests": failed_tests,
-            "return_code": result.returncode
-        }
-    else:
-        print("⚠️  Playwright JSON report not found. Tests may have failed to start.")
-        return {
-            "total_tests": 0,
-            "passed": 0,
-            "failed": 0,
-            "pass_rate": "0%",
-            "failed_tests": [],
-            "error": "Playwright report not generated. Check that playwright is installed: npx playwright install",
-            "return_code": result.returncode
-        }
-
-def push_to_github():
-
-    answer = input("\nDo you want to push the changes to GitHub? (Y/N): ")
-
-    if answer.lower() in ["y", "yes"]:
-
-        print("📦 Committing and pushing code to GitHub...")
-
-        subprocess.run(["git", "add", "."])
-        subprocess.run(["git", "commit", "-m", "AI generated tests and execution results"])
-        subprocess.run(["git", "push"])
-
-        print("✅ Code pushed to GitHub")
-
-    else:
-        print("❌ Push cancelled")
 
 async def main():
     print("\n" + "=" * 80)
@@ -256,34 +123,7 @@ async def main():
         cart_dom_snippet = cart_dom[:8000]
         order_dom_snippet = order_dom[:8000]
 
-        # KEY CHANGE: the executor prompt now asks for a proper .spec.ts file
         executor_system_prompt = (load_prompt("executor_agent.md"))
-#                                   + f"""
-#
-# CRITICAL: Output ONLY raw TypeScript. No markdown fences.
-#
-# Here is the REAL HTML DOM of the login page. Extract locators ONLY from this:
-#
-# LOGIN PAGE DOM:
-# {login_dom_snippet}
-#
-# DASHBOARD PAGE DOM:
-# {dashboard_dom_snippet}
-#
-# CART PAGE DOM:
-# {cart_dom_snippet}
-#
-# ORDER PAGE DOM:
-# {order_dom_snippet}
-#
-# RULES:
-# - Use `process.env.LOGIN_USERNAME ?? ''` and `process.env.LOGIN_PASSWORD ?? ''` for credentials
-# - Use `test.beforeEach` for login — never repeat login inside individual tests
-# - Never navigate back to /login inside a test body
-# - Use `await page.waitForURL('**/dashboard**')` after login
-# - Base URL: https://rahulshettyacademy.com/client
-# """)
-
 
         executor_agent = AssistantAgent(
             name="executor_agent",
